@@ -1,1 +1,37 @@
+**** Count number of free cell ( 8-2-23 ) ****
 
+class Solution{
+  public:
+  vector<long long int> countZero(int n, int k, vector<vector<int>>& arr){
+      vector<bool> row(n+1,false);
+      vector<bool> col(n+1,false);
+      vector<long long int> ans;
+      int rows=n,columns=n;
+      int zeros=n*n;
+      for(int i=0;i<k;i++){
+          int r=arr[i][0],c=arr[i][1];
+          if(row[r]==false && col[c]==false){
+              zeros=zeros-rows-columns+1;
+              rows--;
+              columns--;
+              row[r]=true;
+              col[c]=true;
+          }
+          else if(row[r]==false && col[c]==true){
+              zeros=zeros-columns;
+              rows--;
+              row[r]=true;
+          }
+          else if(row[r]==true && col[c]==false){
+              zeros=zeros-rows;
+              columns--;
+              col[c]=true;
+          }
+          ans.push_back(zeros);
+      }
+      return ans;
+  }
+};
+
+******************************************************************************
+******************************************************************************
