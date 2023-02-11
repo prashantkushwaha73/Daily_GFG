@@ -62,3 +62,48 @@ public:
 };
 
 ******************************************************************************
+**** Minimum Days ( 11/2/23 )
+
+class Solution {
+
+  public:
+    int getMinimumDays(int N,string S, vector<int> &P) {
+        vector<int> posi(N);
+        for(int i=0;i<P.size();i++){
+            posi[P[i]]=i;
+        }
+        int ans=0;
+        bool flag=false;
+        stack<char> s;
+        s.push(S[0]);
+        for(int i=1;i<S.size();i++){
+            if(S[i]!=s.top()){
+                s.push(S[i]);
+                continue;
+            }
+            else{
+                flag=true;
+                if(posi[i-1]<posi[i]){
+                    s.pop();
+                    s.push('?');
+                    s.push(S[i]);
+                    if(posi[i-1]>ans){
+                        ans=posi[i-1];
+                    }
+                }
+                else{
+                    s.push('?');
+                    if(posi[i]>ans){
+                        ans=posi[i];
+                    }
+                }
+            }
+        }
+        if(flag){
+            return ans+1;
+        }
+        else{
+            return 0;
+        }
+    }
+};
