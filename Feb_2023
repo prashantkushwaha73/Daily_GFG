@@ -107,3 +107,64 @@ class Solution {
         }
     }
 };
+
+*******************************************************************************************
+**** Prime List ( 12/2/23 ) ****
+
+class Solution{
+private:
+bool isPrime(int n)  
+{
+ int m=sqrt(n);  
+  for(int i = 2; i <= m; i++)  
+  {  
+      if(n % i == 0)  
+      {  
+          return  false; 
+          break;  
+      }  
+  }
+  return true;
+}  
+int cpn(int n){
+    int left=n;
+    int right=n;
+    while(isPrime(left)==0 ){
+        left--;
+    }
+    while(isPrime(right)==0){
+        right++;
+    }
+    if(n-left <= right-n){
+        return left;
+    }
+    else{
+        return right;
+    }
+}
+public:
+    Node *primeList(Node *head){
+        Node* ans=head;
+        while(head!=NULL){
+          int n=head->val;
+          if(n==1){
+              head->val=2;
+              head=head->next;
+              continue;
+          }
+          if(n==2 || isPrime(n) ){
+              head=head->next;
+              continue;
+          }
+          else{
+              int rep=cpn(n);
+              head->val=rep;
+              head=head->next;
+              continue;
+          }
+        }
+        return ans;
+    }
+};
+
+******************************************************************************************************************************************************
