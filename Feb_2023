@@ -197,3 +197,69 @@ public:
 };
 
 ***************************************************************************************************************************************************
+**** Good Stones ( 16/2/23 ) ****
+class Solution{
+public:
+    int goodStones(int n,vector<int> &arr){
+        vector<int> parent(n,0);
+        bool check=true;
+        for(int i=0;i<n;i++){
+            if(arr[i]==0){
+                continue;
+            }
+            else if(arr[i]<0){
+                if((i+arr[i])<0){
+                    parent[i]=-1;
+                    check=false;
+                }
+            }
+            else{
+                if(i+arr[i]>=n){
+                    parent[i]=-1;
+                    check=false;
+                }
+            }
+        }
+        if(check){
+            return 0;
+        }
+    
+        for(int i=0;i<n;i++){
+            if(parent[i]==-1){
+                continue;
+            }
+            if(parent[i+arr[i]]==-1){
+                parent[i]=-1;
+            }
+            else{
+                parent[i]=i+arr[i];
+            }
+        }
+        while(1){
+            check=false;
+        for(int i=0;i<n;i++){
+            if(parent[i]==-1){
+                continue;
+            }
+            if(parent[i+arr[i]]==-1){
+                parent[i]=-1;
+                check=true;
+            }
+        }
+        if(check==false){
+            break;
+        }
+        }
+        int ans=0;
+        for(int i=0;i<n;i++){
+            if(parent[i]==-1){
+                ans++;
+            }
+        }
+        
+        return ans;
+        
+    }  
+};
+
+*********************************************************************************************************************
