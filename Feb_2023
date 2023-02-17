@@ -263,3 +263,28 @@ public:
 };
 
 *********************************************************************************************************************
+**** Is it Fibonacci ( 17/2/23 ) ****
+class Solution {
+  public:
+    long long solve(int N, int K, vector<long long> GeekNum) {
+        if(N<=GeekNum.size()){
+            return GeekNum[N-1];
+        }
+        long long sum=0;
+        for(int i=0;i<K;i++){
+            sum+=GeekNum[i];
+        }
+        int a=0,b=K-1;
+        while(b+1 != N){
+            GeekNum.push_back(sum);
+            sum+=GeekNum[b+1];
+            sum-=GeekNum[a];
+            a++;
+            b++;
+        }
+      
+        return GeekNum[b];
+    }
+};
+
+*******************************************************************************************************
