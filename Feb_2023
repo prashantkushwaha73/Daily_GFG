@@ -288,3 +288,50 @@ class Solution {
 };
 
 *******************************************************************************************************
+**** Apple Sequences ( 18/2/23 ) ****
+
+class Solution {
+  public: int appleSequences(int n, int m, string arr) {
+    int s = 0, e = 0, ans = INT_MIN, os = 0;
+    bool flag;
+    while (e < arr.size()) {
+      flag = true;
+      while ((e < arr.size() && arr[e] == 'A') || (e < arr.size() && arr[e] == 'O' && os < m)) {
+        if (e < arr.size() && arr[e] == 'O' && os < m) {
+          flag = false;
+          os++;
+          e++;
+        } else {
+          flag = false;
+          e++;
+        }
+      }
+      if (flag == false) {
+        e--;
+      }
+      if ((e - s + 1) > ans) {
+        ans = e - s + 1;
+      }
+      if (arr[s] == 'O') {
+        os--;
+      }
+      if (e + 1 < arr.size() && arr[e + 1] == 'O') {
+        os++;
+      }
+      s++;
+      e++;
+      while (os > m) {
+        if (arr[s] == 'O') {
+          os--;
+        }
+        s++;
+      }
+      while (e + 1 < arr.size() && arr[e + 1] == 'A') {
+        e++;
+      }
+    }
+    return ans;
+  }
+};
+
+****************************************************************************************************************
