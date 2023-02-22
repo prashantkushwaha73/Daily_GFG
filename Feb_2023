@@ -335,3 +335,47 @@ class Solution {
 };
 
 ****************************************************************************************************************
+**** Connect Nodes at Same Level ( 22/2/23 ) ****
+
+class Solution{
+    public:
+    void connect(Node *root)
+    {
+       vector<Node*> ans;
+       ans.push_back(root);
+       ans.push_back(NULL);
+       queue<Node*> q;
+       q.push(root);
+       q.push(NULL);
+       while(!q.empty()){
+           Node* temp=q.front();
+           q.pop();
+           if(temp==NULL){
+               if(!q.empty()){
+                   q.push(NULL);
+                   ans.push_back(NULL);
+               }
+               continue;
+           }
+           if(temp->left){
+               q.push(temp->left);
+               ans.push_back(temp->left);
+           }
+           if(temp->right){
+               q.push(temp->right);
+               ans.push_back(temp->right);
+           }
+       }
+       for(int i=0;i<ans.size()-1;i++){
+           if(ans[i]==NULL){
+               continue;
+           }
+           else{
+               ans[i]->nextRight=ans[i+1];
+           }
+       }
+       return;
+    }    
+};
+
+******************************************************************************************************************
