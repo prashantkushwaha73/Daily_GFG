@@ -1,0 +1,31 @@
+*****************************************************************
+**** Array Operations ( 12/5/23 ) ****
+
+class Solution {
+  public:
+    int arrayOperations(int n, vector<int> &arr) {
+        int ans=0,count=0,j=0;
+        while(j<arr.size()){
+            if(arr[j]!=0){
+                j++;
+                count++;
+            }
+            else if(arr[j]==0){
+                if(count!=0){
+                    ans++;
+                    j++;
+                    count=0;
+                }
+                else{
+                    j++;
+                }
+            }
+        }
+        if(count){
+            ans++;
+        }
+        return ans;
+    }
+};
+
+*****************************************************************************************
