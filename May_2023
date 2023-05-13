@@ -29,3 +29,29 @@ class Solution {
 };
 
 *****************************************************************************************
+**** Bit Magic ( 13/5/23 ) ****
+
+class Solution {
+  public:
+    int bitMagic(int n, vector<int> &arr) {
+        int i=0,j=arr.size()-1,count=0;
+        while(i<j){
+            if(arr[i]!=arr[j]){
+                count++;
+                i++; j--;
+            }
+            
+            else{
+                i++; j--;
+            }
+        }
+        if(count%2){
+            return (count/2)+1;
+        }
+        else{
+            return count/2;
+        }
+    }
+};
+
+*********************************************************************************************
