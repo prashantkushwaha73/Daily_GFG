@@ -55,3 +55,39 @@ class Solution {
 };
 
 *********************************************************************************************
+**** Hands of Straights ( 20/05/23 ) ****
+
+class Solution {
+  public:
+    bool isStraightHand(int N, int groupSize, vector<int> &hand) {
+        if(N%groupSize){
+            return false;
+        }
+          unordered_map<int,int> count;
+          for(int i=0;i<N;i++){
+              count[hand[i]]++;
+          }
+          sort(hand.begin(),hand.end());
+          int s=0,e,k,temp;
+          while(s<N){
+              e=hand[s];
+              k=groupSize;
+              while(k){
+                 count[e]--;
+                 k--;
+                 e++;
+                 if(k && count[e]==0){
+                     return false;
+                 }
+                 
+              }
+              s++;
+              while( s<N && count[hand[s]]==0){
+                  s++;
+              }
+          }
+          return true;
+    }
+};
+
+********************************************************************************************
