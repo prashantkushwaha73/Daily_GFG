@@ -108,3 +108,21 @@ class Solution {
 };
 
 *********************************************************************************************************
+**** Maximum Identical Bowls ( 24/05/23 ) ****
+
+class Solution {
+  public:
+    int getMaximum(int N, vector<int> &arr) {
+        
+        long long int count=0;
+        for(int i=0;i<N;i++){
+            count+=arr[i];
+        }
+        while(count%N){
+            N--;
+        }
+        return N;
+    }
+};
+
+***********************************************************************************************************
