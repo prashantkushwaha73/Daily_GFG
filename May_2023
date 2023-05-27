@@ -126,3 +126,35 @@ class Solution {
 };
 
 ***********************************************************************************************************
+**** Modify Linked List-1 ( 27/05/23 ) ****
+
+class Solution{
+    public:
+    struct Node* modifyTheList(struct Node *head)
+    {
+        vector<int> list;
+        Node* temp = head;
+        while(temp){
+            list.push_back(temp->data);
+            temp=temp->next;
+        }
+        int i=0,j=list.size()-1,swp;
+        while(i<j){
+            swp=list[i];
+            list[i]=list[j]-swp;
+            list[j]=swp;
+            i++;
+            j--;
+        }
+        i=0;
+        temp=head;
+        while(temp){
+            temp->data = list[i];
+            temp = temp->next;
+            i++;
+        }
+        return head;
+    }
+};
+
+******************************************************************************************************************
