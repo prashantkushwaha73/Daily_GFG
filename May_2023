@@ -158,3 +158,32 @@ class Solution{
 };
 
 ******************************************************************************************************************
+**** Frequency Game ( 31/05/23 ) ****
+
+class Solution{
+public:
+    int LargButMinFreq(int arr[], int n) {
+        map<int,int> m1;
+        map<int,bool> m2;
+        for(int i=0;i<n;i++){
+            m1[arr[i]]++;
+        }
+        map<int,int> m3;
+        for(auto i:m1){
+            if(m2[i.second]){
+                if(m3[i.second] < i.first){
+                    m3[i.second] = i.first;
+                }
+            }
+            else{
+                m3[i.second] = i.first;
+                m2[i.second] = true;
+            }
+        }
+        for(auto i: m3){
+            return i.second;
+        }
+    }
+};
+
+*******************************************************************************************************************
