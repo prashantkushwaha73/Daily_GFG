@@ -1,0 +1,35 @@
+****************************************************************************************************************
+**** Topological sort ( 01/06/23 ) ****
+
+ class Solution
+{
+    private:
+    void dfs(vector<int> adj[],vector<int>& ans,map<int,bool>& mapp,int n){
+        for(int j=0;j<adj[n].size();j++){
+            if(mapp[adj[n][j]]==false){
+                mapp[adj[n][j]]=true;
+                dfs(adj,ans,mapp,adj[n][j]);
+            }
+        }
+        ans.push_back(n);
+        return;
+    }
+    
+	public:
+	//Function to return list containing vertices in Topological order. 
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	     vector<int> ans;
+	    map<int,bool> mapp;
+	    for(int i=0;i<V;i++){
+	        if(mapp[i]==false){
+	            mapp[i]=true;
+	            dfs(adj,ans,mapp,i);
+	        }
+	    }
+	    reverse(ans.begin(),ans.end());
+	    return ans;
+	}
+};
+
+*****************************************************************************************************************
