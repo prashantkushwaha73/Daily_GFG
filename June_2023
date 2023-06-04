@@ -33,3 +33,34 @@
 };
 
 *****************************************************************************************************************
+**** Reversing the equation ( 04/06/23 ) ****
+
+class Solution
+{
+  public:
+    string reverseEqn (string s)
+        {
+            string ans="";
+            stack<string> st;
+            int i=0,j=0;
+            while(i<s.size() && j<s.size()){
+                if(s[j]=='+' || s[j]=='-' || s[j]=='*' || s[j]=='/'){
+                    st.push(s.substr(i,(j-i)));
+                    st.push(s.substr(j,1));
+                    j++;
+                    i=j;
+                }
+                else{
+                    j++;
+                }
+            }
+            st.push(s.substr(i,j-i));
+            while(!st.empty()){
+                ans+=st.top();
+                st.pop();
+            }
+            return ans;
+        }
+};
+
+********************************************************************************************************************
