@@ -64,3 +64,38 @@ class Solution
 };
 
 ********************************************************************************************************************
+**** Find the Closest Element in BST ( 05/06/23 ) ****
+
+class Solution
+{
+    public:
+    //Function to find the least absolute difference between any node
+	//value of the BST and the given integer.
+	void solve(Node* root , int& ans , int K){
+	    if(root==NULL){
+	        return;
+	    }
+	    if(root->data == K){
+	        ans=0;
+	        return;
+	    }
+	    if(abs(root->data - K) < ans){
+	        ans=abs(root->data - K);
+	    }
+	    if(root->data > K){
+	        solve(root->left,ans,K);
+	    }
+	    else{
+	        solve(root->right,ans,K);
+	    }
+	}
+	
+    int minDiff(Node *root, int K)
+    {
+        int ans=abs(root->data - K);
+        solve(root,ans,K);
+        return ans;
+    }
+};
+
+*******************************************************************************************************************
