@@ -99,3 +99,63 @@ class Solution
 };
 
 *******************************************************************************************************************
+**** Predecessor and Successor ( 06/06/23 ) ****
+
+class Solution
+{
+    public:
+    void solve(Node* root,Node*& pre,Node*& suc,int key,bool& check,bool& r,bool& ra){
+        if(check){
+            return;
+        }
+        if(r){
+            suc = root;
+            check = true;
+            return;
+        }
+        
+        if(root == NULL){
+            return;
+        }
+        solve(root->left,pre,suc,key,check,r,ra);
+        if(check){
+            return;
+        }
+        if(ra){
+            suc = root;
+            check = true;
+            return;
+        }
+        
+        if(root->key == key){
+            if(root->right){
+                ra = true;
+                solve(root->right,pre,suc,key,check,r,ra);
+                return;
+            }
+            r = true;
+            return;
+        }
+        
+        else if(root->key > key){
+            suc = root;
+            check = true;
+            return;
+        }
+        else{
+            pre = root;
+            solve(root->right,pre,suc,key,check,r,ra);
+            return;
+        }
+        return;
+    }
+    
+    void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
+    {
+        bool check = false,r=false,ra=false;
+        solve(root,pre,suc,key,check,r,ra);
+        return;
+    }
+};
+
+**************************************************************************************************************************
