@@ -159,3 +159,49 @@ class Solution
 };
 
 **************************************************************************************************************************
+**** Least Prime Factor ( 07/06/23 ) ****
+
+class Solution {
+  public:
+  bool isPrime(int n)
+{
+    // Corner case
+    if (n <= 1)
+        return false;
+ 
+    // Check from 2 to n-1
+    for (int i = 2; i < n; i++)
+        if (n % i == 0)
+            return false;
+ 
+    return true;
+}
+
+int iPrime(int n)
+{
+    // Corner case
+    
+    // Check from 2 to n-1
+    for (int i = 2; i <= sqrt(n); i++){
+        if (n % i == 0)
+            return i;
+    }
+    
+}
+    
+    vector<int> leastPrimeFactor(int n) {
+        vector<int> ans ;
+        ans.push_back(0); ans.push_back(1); ans.push_back(2);
+        for(int i=3;i<=n;i++){
+           if(isPrime(i)){
+               ans.push_back(i);
+           }
+           else{
+               ans.push_back(iPrime(i));
+           }
+        }
+        return ans;
+    }
+};
+
+****************************************************************************************************************************
