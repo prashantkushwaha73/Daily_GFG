@@ -227,3 +227,29 @@ class Solution {
 };
 
 *****************************************************************************************************************************
+**** Queue Operations ( 17/06/23 ) ****
+
+class Solution{
+    public:
+    queue<int> q;
+    map<int,int> m;
+    // Function to insert element into the queue
+    void insert(queue<int> &q, int k){
+        q.push(k);
+        m[k]++;
+    }
+    
+    // Function to find frequency of an element
+    // return the frequency of k
+    int findFrequency(queue<int> &q, int k){
+        if(m[k]>0){
+            return m[k];
+        }
+        else{
+            return -1;
+        }
+    }
+    
+};
+
+*******************************************************************************************************
