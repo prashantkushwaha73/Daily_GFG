@@ -294,3 +294,40 @@ class Solution{
 };
 
 *******************************************************************************************************
+**** Lemonade Change ( 22/06/23 ) ****
+
+class Solution {
+  public:
+    bool lemonadeChange(int N, vector<int> &bills) {
+        map<int,int> m;
+        for(int i=0;i<N;i++){
+            if(bills[i]==5){
+                m[5]++;
+            }
+            else if(bills[i]==10){
+                if(m[5]){
+                    m[5]--;
+                    m[10]++;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                if(m[10] && m[5]){
+                    m[10]--;
+                    m[5]--;
+                }
+                else if(m[5]>=3){
+                    m[5]-=3;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+};
+
+***************************************************************************************************************
