@@ -331,3 +331,24 @@ class Solution {
 };
 
 ***************************************************************************************************************
+**** Prefix match with other strings ( 24/06/23 ) ****
+
+//User function Template for C++
+
+class Solution{   
+public:
+    int klengthpref(string arr[], int n, int k, string str){    
+      if(str.size() < k){
+          return 0;
+      }
+       int ans = 0 ;
+       for(int i= 0;i<n;i++){
+           if(str.substr(0,k) == arr[i].substr(0,k)){
+               ans ++ ;
+           }
+       }
+       return ans;
+    }
+};
+
+***************************************************************************************************
