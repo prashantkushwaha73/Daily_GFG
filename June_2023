@@ -352,3 +352,29 @@ public:
 };
 
 ***************************************************************************************************
+**** Unique rows in boolean matrix ( 25/06/23 ) ****
+
+class Solution
+{
+    public:
+    // #define MAX 1000
+    vector<vector<int>> uniqueRow(int M[MAX][MAX],int row,int col)
+    {
+        vector<vector<int>> ans;
+        vector<int> v;
+        map<vector<int>,bool> m;
+       for(int i=0;i<row;i++){
+          for(int j=0;j<col;j++){
+              v.push_back(M[i][j]);
+          } 
+          if(m[v]==0){
+              ans.push_back(v);
+              m[v]=true;
+          }
+          v.clear();
+       }
+      return ans;
+    }
+};
+
+*****************************************************************************************
