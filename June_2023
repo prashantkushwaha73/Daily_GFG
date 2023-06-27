@@ -378,3 +378,42 @@ class Solution
 };
 
 *****************************************************************************************
+**** Union of Two Linked Lists ( 27/06/23 ) ****
+
+class Solution
+{
+    public:
+    struct Node* makeUnion(struct Node* head1, struct Node* head2)
+    {
+        vector<int> v;
+        Node* temp = head1;
+        while(temp){
+            v.push_back(temp->data);
+            temp =  temp->next;
+        }
+        temp = head2;
+        while(temp){
+            v.push_back(temp->data);
+            temp = temp->next;
+        }
+        sort(v.begin(),v.end());
+        map<int,bool> m;
+        vector<int> final;
+        for(int i=0;i<v.size();i++){
+            if(m[v[i]]==false){
+                final.push_back(v[i]);
+                m[v[i]]=true;
+            }
+        }
+        Node* head  = new Node(final[0]);
+        temp = head;
+        for(int i=1;i<final.size();i++){
+            Node* neww = new Node(final[i]);
+            temp->next = neww;
+            temp = neww;
+        }
+        return head;
+    }
+};
+
+******************************************************************************************
