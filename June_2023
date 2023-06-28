@@ -417,3 +417,28 @@ class Solution
 };
 
 ******************************************************************************************
+**** Maximum Depth Of Binary Tree ( 28/06/23 ) ****
+
+class Solution{
+  public:
+  void solve(Node* root , int& ans,int n){
+      if(root == NULL){
+          return;
+      }
+      if(n>ans){
+          ans = n;
+      }
+      solve(root->left,ans,n+1);
+      solve(root->right,ans,n+1);
+      return;
+  }
+  
+    /*You are required to complete this method*/
+    int maxDepth(Node *root) {
+        int ans = 1;
+    solve(root,ans,1);
+    return ans;
+    }
+};
+
+********************************************************************************************
