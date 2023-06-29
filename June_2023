@@ -442,3 +442,49 @@ class Solution{
 };
 
 ********************************************************************************************
+**** Next Happy Number ( 29/06/23 ) ****
+
+class Solution{
+public:
+    int solve(int n){
+        int sum = 0,v;
+        while(n){
+            v=n%10;
+            sum+=pow(v,2);
+            n/=10;
+        }
+        return sum;
+    }
+
+    int nextHappy(int N){
+        set<int> s;
+        int size,data;
+        N++;
+        data = N;
+        while(1){
+            size = s.size();
+            s.insert(data);
+            if(size == s.size()){
+                N++;
+                data = N;
+            }
+            else{
+            while(1){
+                size = s.size();
+                data = solve(data);
+                if(data == 1){
+                    return N;
+                }
+                s.insert(data);
+                if(size == s.size()){
+                    break;
+                }
+            }
+            N++;
+            data = N; }
+        }
+        return N;
+    }
+};
+
+*********************************************************************************************************
