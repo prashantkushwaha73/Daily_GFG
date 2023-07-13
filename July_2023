@@ -125,3 +125,28 @@ class Solution
 };  
 
 ******************************************************************************************************
+**** Unique Number of Occurrences ( 13/07/23 ) ****
+
+class Solution
+{
+    public:
+    bool isFrequencyUnique(int n, int arr[])
+    {
+        map<int,int> m;
+        for(int i=0;i<n;i++){
+            m[arr[i]]++;
+        }
+        map<int,bool> mapp;
+        for(auto i:m){
+            if(mapp[i.second]){
+                return false;
+            }
+            else{
+                mapp[i.second]=true;
+            }
+        }
+        return true;
+    }
+};
+
+*************************************************************************************************************
