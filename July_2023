@@ -150,3 +150,53 @@ class Solution
 };
 
 *************************************************************************************************************
+**** Implement two stacks in an array ( 14/07/23 ) ****
+
+class twoStacks
+{
+    vector<int> v1;
+    vector<int> v2;
+    int n;
+    public:
+    
+ 
+    //Function to push an integer into the stack1.
+    void push1(int x)
+    {
+     v1.push_back(x);   
+    }
+    
+    //Function to push an integer into the stack2.
+    void push2(int x)
+    {
+       v2.push_back(x);
+    }
+    
+    //Function to remove an element from top of the stack1.
+    int pop1()
+    {
+        if(v1.size()==0){
+            return -1;
+        }
+        else{
+            n = v1[v1.size()-1];
+            v1.pop_back();
+            return n;
+        }
+    }
+    
+    //Function to remove an element from top of the stack2.
+    int pop2()
+    {
+       if(v2.size()==0){
+           return -1;
+       }
+       else{
+           n = v2[v2.size()-1];
+           v2.pop_back();
+           return n;
+       }
+    }
+};
+
+************************************************************************************************
