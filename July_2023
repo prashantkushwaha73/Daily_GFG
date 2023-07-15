@@ -200,3 +200,34 @@ class twoStacks
 };
 
 ************************************************************************************************
+**** Delete middle element of a stack ( 15/07/23 ) ****
+
+class Solution
+{
+    public:
+    
+    void solve(stack<int>& s,int siz){
+        if(s.size()==siz){
+            s.pop();
+            return;
+        }
+        int v = s.top();
+        s.pop();
+        solve(s,siz);
+        s.push(v);
+    }
+    
+    void deleteMid(stack<int>&s, int sizeOfStack)
+    {
+        int siz;
+        if(s.size()%2){
+            siz = (s.size()+1)/2;
+        }
+        else{
+            siz = (s.size())/2;
+        }
+        solve(s,siz);
+    }
+};
+
+**************************************************************************************************
