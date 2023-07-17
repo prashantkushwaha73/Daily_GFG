@@ -252,4 +252,36 @@ class Solution
     }
 };
 
-***********************************************************************************************
+*********************************************************************************************
+**** First non-repeating character in a stream ( 17/07/23 ) ****
+
+class Solution {
+	public:
+		string FirstNonRepeating(string A){
+		     string ans="";
+		     queue<char> q;
+		     unordered_map<char,int> m;
+		     for(int i=0;i<A.size();i++){
+		         m[A[i]]++;
+		         if(m[A[i]]==1){
+		             q.push(A[i]);
+		         }
+		        
+		            
+		             while(!q.empty() && m[q.front()]!=1){
+		                 q.pop();
+		             }
+		             if(q.empty()){
+		                 ans+='#';
+		             }
+		             else{
+		                 ans+=q.front();
+		             }
+		        
+		     }
+		     return ans;
+		}
+};
+
+*************************************************************************************************
+
