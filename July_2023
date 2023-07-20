@@ -284,4 +284,33 @@ class Solution {
 };
 
 *************************************************************************************************
+**** Non Repeating Character ( 20/07/23 ) ****
+
+class Solution
+{
+    public:
+    //Function to find the first non-repeating character in a string.
+    char nonrepeatingCharacter(string S)
+    {
+       map<char,int> m;
+       for ( int i=0;i<S.size();i++){
+           m[S[i]]++;
+       }
+       map<char,bool> mb;
+       for(auto i:m){
+           if(i.second==1){
+               mb[i.first]=true;
+           }
+       }
+       for(int i=0;i<S.size();i++){
+           if(mb[S[i]]){
+               return S[i];
+           }
+       }
+       return '$'; 
+    }
+
+};
+
+**********************************************************************************************************
 
