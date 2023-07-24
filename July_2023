@@ -393,4 +393,41 @@ class Solution
 
 
 ***************************************************************************************************
+**** Right View of Binary Tree ( 24/07/23 ) ****
+
+class Solution
+{
+    public:
+    //Function to return list containing elements of right view of binary tree.
+    vector<int> rightView(Node *root)
+    {
+       map<int,int> nodes;
+        queue<pair<Node*,int>> q;
+        q.push(make_pair(root,0));
+        vector<int> ans;
+        if(root==NULL){
+            return ans;
+        }
+        while(!q.empty()){
+           pair<Node*,int> temp=q.front();
+           q.pop();
+           Node* node=temp.first;
+           int lvl=temp.second;
+           nodes[lvl]=node->data;
+            if(node->left){
+               q.push(make_pair(node->left,lvl+1));
+           }
+           if(node->right){
+               q.push(make_pair(node->right,lvl+1));
+           }
+        }
+        for(auto i:nodes){
+            ans.push_back(i.second);
+        }
+        return ans;
+    }
+};
+
+
+*********************************************************************************************************
 
