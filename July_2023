@@ -430,4 +430,53 @@ class Solution
 
 
 *********************************************************************************************************
+**** Level order traversal in spiral form ( 25/07/23 ) ****
+
+vector<int> findSpiral(Node *root)
+{
+    vector<int> store;
+    bool flag = false;
+    queue<Node*> q;
+    q.push(root);
+    q.push(NULL);
+    vector<int> ans;
+    Node* temp;
+    while(!q.empty()){
+        temp = q.front();
+        q.pop();
+        if(temp == NULL){
+            if(flag){
+                for(int i=0;i<store.size();i++){
+                    ans.push_back(store[i]);
+                }
+                store.clear();
+                flag = false;
+            }
+            else{
+                reverse(store.begin(),store.end());
+                for(int i=0;i<store.size();i++){
+                    ans.push_back(store[i]);
+                }
+                store.clear();
+                flag = true;
+            }
+            
+            if(!q.empty()){
+                q.push(NULL);
+            }
+        }
+        else{
+            store.push_back(temp->data);
+            if(temp->left){
+                q.push(temp->left);
+            }if(temp->right){
+                q.push(temp->right);
+            }
+        }
+        
+    }
+    return ans;
+}
+
+****************************************************************************************************
 
