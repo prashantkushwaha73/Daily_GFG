@@ -479,4 +479,37 @@ vector<int> findSpiral(Node *root)
 }
 
 ****************************************************************************************************
+**** Kth Ancestor in a Tree ( 26/07/23 ) ****
+
+void solve(Node* root,int node,unordered_map<int,int>& p){
+    if(root->data == node){
+        return;
+    }
+    if(root->left){
+        p[root->left->data] = root->data;
+        solve(root->left,node,p);
+    }
+    if(root->right){
+        p[root->right->data] = root->data;
+        solve(root->right,node,p);
+    }
+}
+
+int kthAncestor(Node *root, int k, int node)
+{
+    unordered_map<int,int> p;
+    p[root->data] = -1;
+    solve(root,node,p);
+    while(k){
+        if(node == -1){
+            return -1;
+        }
+        node = p[node];
+        k--;
+    }
+    return node;
+}
+
+
+***************************************************************************************
 
