@@ -512,4 +512,71 @@ int kthAncestor(Node *root, int k, int node)
 
 
 ***************************************************************************************
+**** Heap Sort ( 27/07/23 ) ****
+
+class Solution
+{
+    public:
+    //Heapify function to maintain heap property.
+    void heapify(int arr[], int n, int i)  
+    {
+       int posi = i;
+       int left = 2*i;
+       int right = 2*i+1;
+       
+       if(left < n && arr[posi] > arr[left]){
+           posi = left;
+       }
+       if(right < n && arr[posi] > arr[right]){
+           posi = right;
+       }
+       
+       if(posi != i){
+           swap(arr[i],arr[posi]);
+           heapify(arr,n,posi);
+       }
+    }
+
+    public:
+    //Function to build a Heap from array.
+    void buildHeap(int arr[], int n)  
+    { 
+        for(int i=n/2;i>0;i--){
+            heapify(arr,n+1,i);
+        }
+        
+        for (int i = n ; i > 1; i--) {
+ 
+        // Move current root to end
+        swap(arr[1], arr[i]);
+ 
+        // call max heapify on the reduced heap
+        heapify(arr, i, 1);
+    }
+    }
+
+    
+    public:
+    //Function to sort an array using Heap Sort.
+    void heapSort(int arr[], int n)
+    {
+        int arrr[n+1];
+        arrr[0] = -1;
+        for(int i=0;i<n;i++){
+            arrr[i+1] = arr[i];
+        }
+        buildHeap(arrr,n);
+        for(int i=0;i<n;i++){
+            arr[i] = arrr[i+1];
+        }
+        int a=0,b=n-1;
+        while(a<b){
+            swap(arr[a],arr[b]);
+            a++; b--;
+        }
+    }
+};
+
+
+****************************************************************************************************
 
