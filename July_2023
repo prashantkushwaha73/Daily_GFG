@@ -610,4 +610,51 @@ class Solution{
 };
 
 *************************************************************************************************************
+**** Median of BST ( 29/07/23 ) ****
+
+void solve1(Node* root,int& count){
+    if(root==NULL){
+        return;
+    }
+    count++;
+    solve1(root->left,count);
+    solve1(root->right,count);
+}
+
+void solve2(Node* root,int size,int& gin,float& ans){
+    if(root==NULL){
+        return;
+    }
+    solve2(root->left,size,gin,ans);
+    gin++;
+    if(gin==size){
+        ans += float(root->data);
+        return;
+    }
+    solve2(root->right,size,gin,ans);
+}
+
+float findMedian(struct Node *root)
+{
+      int count = 0;
+      float ans = 0;
+      solve1(root,count);
+      int gin = 0;
+      if(count%2==0){
+          solve2(root,count/2,gin,ans);
+      }
+      gin = 0;
+      solve2(root,(count/2)+1,gin,ans);
+      if(count%2){
+          return ans;
+      }
+      
+      else{
+          return ans/2;
+      }
+      
+}
+
+
+***********************************************************************************************
 
