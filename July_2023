@@ -657,4 +657,43 @@ float findMedian(struct Node *root)
 
 
 ***********************************************************************************************
+**** Inorder Successor in BST ( 30/07/23 ) ****
+
+class Solution{
+  public:
+    // returns the inorder successor of the Node x in BST (rooted at 'root')
+    void solve(Node* root,Node* x,Node* &ans,bool& flag,bool& check){
+        if(root->left && (root->data > x->data)){
+            solve(root->left,x,ans,flag,check);
+        }
+        if(check == false){
+            if(root->data == x->data){
+                check = true;
+            }
+        }
+        else if(flag == false){
+                ans = root;
+                flag = true;
+            
+        }
+        else {
+            return;
+        }
+        if(root->right){
+            solve(root->right,x,ans,flag,check);
+        }
+    }
+    
+    Node * inOrderSuccessor(Node *root, Node *x)
+    {
+        Node* ans = NULL;
+        bool flag = false;
+        bool check = false;
+        solve(root,x,ans,flag,check);
+        
+        return ans;
+    }
+};
+
+************************************************************************************************************
 
