@@ -153,3 +153,21 @@ public:
 };
 
 ********************************************************************************************
+**** Chocolate Distribution Problem ( 05/08/23 ) ****
+
+class Solution{
+    public:
+    long long findMinDiff(vector<long long> a, long long n, long long m){
+         sort(a.begin(),a.end());
+         long long i=0,j=m-1,ans=INT_MAX;
+         while(j<n){
+             if(a[j] - a[i] < ans){
+                 ans = a[j] - a[i];
+             }
+             i++; j++;
+         }
+         return ans;
+    }   
+};
+
+******************************************************************************************
