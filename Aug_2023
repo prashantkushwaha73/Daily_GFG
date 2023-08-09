@@ -201,3 +201,21 @@ class Solution{
 };
 
 ***********************************************************************************
+**** Largest prime factor ( 09/08/23 ) ****
+
+class Solution{
+public: 
+    long long int largestPrimeFactor(int N){
+        int ans = INT_MIN;
+        for(int i=2;i<=sqrt(N);){
+            while(N%i==0){
+                N/=i;
+                ans = max(ans,i);
+            }
+            i++;
+        }
+        return max(ans,N);
+    }
+};
+
+***************************************************************
