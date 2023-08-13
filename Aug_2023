@@ -219,3 +219,25 @@ public:
 };
 
 ***************************************************************
+**** Nth Fibonacci Number ( 13/08/23 ) ****
+
+class Solution {
+  public:
+  
+  int solve(int n,vector<int>& v){
+      if(v[n]!=-1){
+          return v[n];
+      }
+      v[n] = (solve(n-1,v) + solve(n-2,v))%1000000007;
+      return v[n];
+  }
+  
+    int nthFibonacci(int n){
+        vector<int> v(n+1,-1);
+        v[0]=0;
+        v[1]=1;
+         return solve(n,v);
+    }
+};
+
+*********************************************************************************
