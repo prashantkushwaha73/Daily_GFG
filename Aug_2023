@@ -450,3 +450,24 @@ class Solution
 
 
 ********************************************************************************
+**** Remove duplicate element from sorted Linked List ( 28/08/23 ) ****
+
+Node *removeDuplicates(Node *head)
+{
+   Node* first = head;
+   Node* second = head -> next;
+   while(second){
+       if(second->data == first->data){
+           second = second->next;
+           first->next = second;
+       }
+       else{
+           first = second;
+           second = second->next;
+       }
+   }
+   return head;
+}
+
+***********************************************************************************
+ 
