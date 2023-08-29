@@ -470,4 +470,60 @@ Node *removeDuplicates(Node *head)
 }
 
 ***********************************************************************************
+**** Delete nodes having greater value on right ( 29/08/23 ) ****
+
+class Solution
+{
+    public:
+    Node *compute(Node *head)
+    {
+        if(head->next == NULL){
+            return head;
+        }
+        
+        Node* first = head;
+        Node* second = first->next;
+        Node* third = second->next;
+        first->next = NULL;
+        while(third){
+            second->next = first;
+            first = second;
+            second = third;
+            third = third->next;
+        }
+        second->next = first;
+        head = second;
+        first = head;
+        second = head->next;
+        while(second){
+            if(second->data >= first->data){
+                first = second;
+                second = first->next;
+            }
+            else{
+                second = second->next;
+                first->next = second;
+            }
+        }
+        if(head->next == NULL){
+            return head;
+        }
+        first = head;
+        second = first->next;
+        third = second->next;
+        first->next = NULL;
+          while(third){
+            second->next = first;
+            first = second;
+            second = third;
+            third = third->next;
+        }
+        second->next = first;
+        head = second;
+        return head;
+    }
+    
+};
+
+**************************************************************************************************
  
