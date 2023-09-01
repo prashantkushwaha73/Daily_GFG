@@ -1,0 +1,41 @@
+********************************************************************************************
+**** Leftmost and rightmost nodes of binary tree ( 01/09/23 ) ****
+
+void printCorner(Node *root)
+{
+
+   queue<Node*>  q;
+   q.push(root);
+   q.push(NULL);
+   vector<int> v;
+   Node* temp;
+   while(!q.empty()){
+       temp = q.front();
+       q.pop();
+       if(temp){
+           v.push_back(temp->data);
+           if(temp->left){
+               q.push(temp->left);
+           }
+           if(temp->right){
+               q.push(temp->right);
+           }
+       }
+       else{
+           if(v.size() == 1){
+               cout<<v[0]<<" ";
+           }
+           else{
+           cout<<v[0]<<" ";
+           cout<<v[v.size()-1]<<" ";
+           }
+           v.clear();
+           if(!q.empty()){
+               q.push(NULL);
+           }
+       }
+   }
+
+}
+
+************************************************************************************************
