@@ -39,3 +39,38 @@ void printCorner(Node *root)
 }
 
 ************************************************************************************************
+**** Leaf under budget ( 02/09/23 ) ****
+
+class Solution
+{
+public:
+    
+    void solve(Node* root,vector<int>& v,int level){
+        if(root == NULL){
+            return;
+        }
+        if(root->left == NULL && root->right == NULL){
+            v.push_back(level);
+        }
+        solve(root->left,v,level+1);
+        solve(root->right,v,level+1);
+    } 
+   
+    int getCount(Node *root, int k)
+    {
+        vector<int> v;
+        solve(root,v,1);
+        sort(v.begin(),v.end());
+        int ans = 0;
+        for(int i=0;i<v.size();i++){
+            if(v[i] > k){
+                break;
+            }
+            ans++;
+            k -= v[i];
+        }
+        return ans;
+    }
+};
+
+********************************************************************************************
