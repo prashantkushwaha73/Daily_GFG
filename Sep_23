@@ -74,3 +74,126 @@ public:
 };
 
 ********************************************************************************************
+**** Check if Tree is Isomorphic ( 03/09/23 ) ****
+
+class Solution{
+  public:
+  
+   void solve(Node* root1,Node* root2,bool& ans){
+       if(root1->left == NULL && root1->right == NULL){
+           if(root2->left || root2->right){
+               ans = false;
+               return;
+           }
+       }
+       else if(root1->left && root1->right){
+           if(root2->left == NULL || root2->right == NULL){
+               ans = false;
+               return;
+           }
+           if(root1->left->data == root2->left->data){
+               if(root1->right->data != root2->right->data){
+                   ans = false;
+                   return;
+               }
+               solve(root1->left,root2->left,ans);
+               if(ans == false){
+                   ans = true;
+                   Node* left = root2->left;
+                   root2->left = root2->right;
+                   root2->right = left;
+               }
+           }
+           else{
+               if(root1->left->data != root2->right->data || root1->right->data != root2->left->data){
+                   ans = false;
+                   return;
+               }
+               else{
+                   Node* left = root2->left;
+                   root2->left = root2->right;
+                   root2->right = left;
+               }
+           }
+       }
+       else{
+           if(root2->left == NULL && root2->right == NULL){
+               ans = false;
+               return;
+           }
+           else if(root2->left && root2->right){
+               ans = false;
+               return;
+           }
+           
+           if(root1->left){
+               if(root2->left){
+                   if(root1->left->data != root2->left->data){
+                       ans = false;
+                       return;
+                   }
+               }
+               else{
+                   if(root1->left->data != root2->right->data){
+                       ans = false;
+                       return;
+                   }
+                   Node* left = root2->left;
+                   root2->left = root2->right;
+                   root2->right = left;
+                   
+               }
+           }
+           else{
+                     if(root2->right){
+                   if(root1->right->data != root2->right->data){
+                       ans = false;
+                       return;
+                   }
+               }
+               else{
+                   if(root1->right->data != root2->left->data){
+                       ans = false;
+                       return;
+                   }
+                   Node* left = root2->left;
+                   root2->left = root2->right;
+                   root2->right = left;
+                   
+               } 
+           }
+       }
+       
+       if(root1->left){
+           solve(root1->left,root2->left,ans);
+       }
+       if(root2->right){
+           solve(root1->right,root2->right,ans);
+       }
+   }
+  
+    // Return True if the given trees are isomotphic. Else return False.
+    bool isIsomorphic(Node *root1,Node *root2)
+    {
+        if(root1){
+            if(root2){
+                if(root1->data != root2->data){
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            if(root2){
+                return false;
+            }
+        }
+        bool ans = true;
+        solve(root1,root2,ans);
+        return ans;
+    }
+};
+
+*******************************************************************************************
