@@ -213,3 +213,40 @@ class Solution {
 };
 
 *********************************************************************************************
+**** Binary Tree to BST ( 08/09/23 ) ****
+
+class Solution{
+  public:
+    // The given root is the root of the Binary Tree
+    // Return the root of the generated BST
+    void solve(Node* root,vector<int>& v,int& index){
+        if(root == NULL){
+            return;
+        }
+        solve(root->left,v,index);
+        root->data = v[index];
+        index++;
+        solve(root->right,v,index);
+    }
+    
+    void trav(Node* root,vector<int>& v){
+        if(root == NULL){
+            return;
+        }
+        v.push_back(root->data);
+        trav(root->left,v);
+        trav(root->right,v);
+    }
+    
+    Node *binaryTreeToBST (Node *root)
+    {
+        vector<int> v;
+        trav(root,v);
+        sort(v.begin(),v.end());
+        int index = 0;
+        solve(root,v,index);
+        return root;
+    }
+};
+
+**********************************************************************************************************
