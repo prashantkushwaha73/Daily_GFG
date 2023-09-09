@@ -250,3 +250,34 @@ class Solution{
 };
 
 **********************************************************************************************************
+**** Kth largest element in BST ( 09/09/23 ) ****
+
+class Solution
+{
+    public:
+    void solve(Node* root,int K,int& count,int& ans){
+        if(root == NULL){
+            return;
+        }
+        solve(root->right,K,count,ans);
+        if(count == K){
+            ans = root->data;
+            count++;
+            return;
+        }
+        else{
+            count++;
+        }
+        solve(root->left,K,count,ans);
+    }
+    
+    int kthLargest(Node *root, int K)
+    {
+        int ans , count = 1;
+        solve(root,K,count,ans);
+        return ans;
+        
+    }
+};
+
+**************************************************************************************
