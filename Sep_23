@@ -306,3 +306,36 @@ class Solution {
 };
 
 ***********************************************************************
+**** Largest number possible ( 13/09/23 ) ****
+
+class Solution{
+public:
+    string findLargest(int N, int S){
+        if(S == 0 && N > 1){
+            return "-1";
+        }
+      int count = 0;
+      string ans = "";
+      while(count < N){
+          if(S >= 9){
+              ans+="9";
+              S -= 9;
+              count++;
+          }
+          else if(S > 0){
+              ans += to_string(S);
+              S = 0;
+              count++;
+          }
+          else{
+              ans += "0";
+              count++;
+          }
+      }
+      if(S == 0){
+      return ans; }
+      else return "-1";
+    }
+};
+
+*****************************************************************************************
