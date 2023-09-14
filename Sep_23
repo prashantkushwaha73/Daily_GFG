@@ -339,3 +339,36 @@ public:
 };
 
 *****************************************************************************************
+**** Perfect Sum Problem ( 14/09/23 ) ****
+
+class Solution{
+
+	public:
+	
+int m=1000000007;
+	int solve(int arr[],int n,int index,int sum,int count,vector<vector<int>>& v){
+	    if(count == sum){
+	        return 1;
+	    }
+	    if(index >= n || count > sum){
+	        return 0;
+	    }
+	    if(v[index][count] != -1){
+	        return v[index][count];
+	    }
+	  
+	   int pick= solve(arr,n,index+1,sum,arr[index]+count,v);
+	   int notpick= solve(arr,n,index+1,sum,count,v);
+	    return v[index][count]=(pick+notpick)%m;
+	}
+	
+	int perfectSum(int arr[], int n, int sum)
+	{
+        vector<vector<int>> v(n,vector<int> (sum+1,-1));
+        sort(arr,arr+n);
+        return solve(arr,n,0,sum,0,v);
+	}
+	  
+};
+
+***********************************************************************************************
