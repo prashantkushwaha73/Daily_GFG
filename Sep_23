@@ -372,3 +372,46 @@ int m=1000000007;
 };
 
 ***********************************************************************************************
+**** Partition Equal Subset Sum ( 15/09/23 ) ****
+
+class Solution{
+    
+    int solve(int index,int N,int arr[],int sum,int target,vector<vector<int>>& dp){
+        if(sum == target){
+             return 1;
+        
+        }
+        if(index >= N || sum > target){
+            return 0;
+        }
+        if(dp[index][sum] != -1){
+            return dp[index][sum];
+        }
+        int inc = solve(index+1,N,arr,sum+arr[index],target,dp);
+        int exc = solve(index+1,N,arr,sum,target,dp);
+        
+        if(inc == 1 || exc == 1){
+           dp[index][sum] = 1;
+        }
+        else{
+            dp[index][sum] = 0;
+        }
+        return dp[index][sum];
+    }
+    
+public:
+    int equalPartition(int N, int arr[])
+    {
+        int total = 0;
+        for(int i=0;i<N;i++){
+            total += arr[i];
+        }
+        if(total%2){
+            return false;
+        }
+        vector<vector<int>> dp(N+1,vector<int> ((total/2)+1,-1));
+        return solve(0,N,arr,0,total/2,dp);
+    }
+};
+
+*********************************************************************************************
