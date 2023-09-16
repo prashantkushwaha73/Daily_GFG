@@ -415,3 +415,32 @@ public:
 };
 
 *********************************************************************************************
+**** Count number of hops ( 16/09/23 ) ****
+
+class Solution
+{
+    public:
+     long long solve(int count,int n,vector<int>& dp){
+         if(count == n){
+             return 1;
+         }
+         if(count > n){
+             return 0;
+         }
+         if(dp[count] != -1){
+             return dp[count];
+         }
+         long long one = solve(count+1,n,dp) % 1000000007;
+         long long two = solve(count+2,n,dp) % 1000000007; 
+         long long three = solve(count+3,n,dp) % 1000000007;
+         return dp[count] = (one + two + three) % 1000000007;
+         
+     }
+    long long countWays(int n)
+    {
+        vector<int> dp(n+1,-1);
+        return solve(0,n,dp);
+    }
+};
+
+****************************************************************************************************
