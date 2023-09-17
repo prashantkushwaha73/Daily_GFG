@@ -444,3 +444,37 @@ class Solution
 };
 
 ****************************************************************************************************
+**** Print first n Fibonacci Numbers ( 17/09/23 ) ****
+
+class Solution
+{
+    public:
+    
+    long long solve(int n,vector<long long>& dp){
+        if(dp[n] != -1){
+            return dp[n];
+        }
+        return dp[n] = solve(n-1,dp)+solve(n-2,dp);
+    }
+    
+    vector<long long> printFibb(int n) 
+    {
+        if(n==1){
+            return {1};
+        }
+        if(n==2){
+            return {1,1};
+        }
+        vector<long long> dp(n+1,-1);
+        dp[1] = 1;
+        dp[2] = 1;
+        dp[n] = solve(n,dp);
+        vector<long long> ans;
+        for(int i=1;i<dp.size();i++){
+            ans.push_back(dp[i]);
+        }
+        return ans;
+    }
+};
+
+*********************************************************************************
