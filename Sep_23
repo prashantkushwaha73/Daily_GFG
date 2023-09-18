@@ -478,3 +478,29 @@ class Solution
 };
 
 *********************************************************************************
+**** Power of 2 ( 18/09/23 ) ****
+
+class Solution{
+    public:
+    // Function to check if given number n is a power of two.
+    bool isPowerofTwo(long long n){
+        
+        if( n == 0 ){
+            return false;
+        }
+        
+        while(1){
+            if(n == 1){
+                return true;
+            }
+            
+            if(n%2){
+                return false;
+            }
+            n/=2;
+        }
+        return true;
+    }
+};
+
+****************************************************************************************
