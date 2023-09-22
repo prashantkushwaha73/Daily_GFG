@@ -553,4 +553,70 @@ class Solution
 };
 
 *****************************************************************************************************
+**** First and last occurrences of x ( 22/09/23 ) ****
 
+
+int left(int arr[],int n,int x){
+    int s=0,e=n-1,mid;
+    while(s<e){
+        mid=s+(e-s)/2;
+        if(arr[mid]==x){
+            e=mid;
+        }
+        else if(arr[mid]>x){
+            e=mid-1;
+        }
+        else{
+            s=mid+1;
+        }
+        if(e-1 ==s){
+            break;
+        }
+    }
+    if(arr[s]==x){
+        return s;
+    }
+    else if(arr[e]==x){
+        return e;
+    }
+    else{
+        return -1;
+    }
+}
+
+int right(int arr[],int n,int x){
+    int s=0,e=n-1,mid;
+    while(s<e){
+        mid=s+(e-s)/2;
+        if(arr[mid]==x){
+            s=mid;
+        }
+        else if(arr[mid]>x){
+            e=mid-1;
+        }
+        else{
+            s=mid+1;
+        }
+         if(e-1 ==s){
+            break;
+        }
+    }
+     if(arr[e]==x){
+        return e;
+    }
+    else if(arr[s]==x){
+        return s;
+    }
+    else{
+        return -1;
+    }
+}
+vector<int> find(int arr[], int n , int x )
+{
+ vector<int> ans; 
+ ans.push_back(left(arr,n,x));
+ ans.push_back(right(arr,n,x));
+ return ans;
+}
+
+*********************************************************************************************************
