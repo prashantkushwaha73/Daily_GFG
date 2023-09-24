@@ -644,3 +644,44 @@ class Solution{
 };
 
 **********************************************************************************************************
+**** Find duplicates in an array ( 24/09/23 ) ****
+
+class Solution{
+  public:
+    vector<int> duplicates(int arr[], int n) {
+        sort(arr,arr+n);
+        vector<int> ans;
+        int i = 0;
+        while(i<n){
+            if(i+1 < n){
+                if(arr[i] == arr[i+1]){
+                    if(ans.size()){
+                        if(ans[ans.size()-1] != arr[i]){
+                            ans.push_back(arr[i]);
+                            i++;
+                        }
+                        else{
+                            i++;
+                        }
+                    }
+                    else{
+                        ans.push_back(arr[i]);
+                            i++;
+                    }
+                }
+                else{
+                    i++;
+                }
+            }
+            else{
+                i++;
+            }
+        }
+        if(ans.size()){
+            return ans;
+        }
+        return {-1};
+    }
+};
+
+*********************************************************************************************************
