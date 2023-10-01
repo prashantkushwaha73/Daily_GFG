@@ -1,0 +1,38 @@
+********************************************************************************************
+**** Boundary traversal of matrix ( 01/10/23 ) ****
+
+class Solution
+{   
+    public:
+    //Function to return list of integers that form the boundary 
+    //traversal of the matrix in a clockwise manner.
+    vector<int> boundaryTraversal(vector<vector<int> > matrix, int n, int m) 
+    {
+        vector<int> ans;
+        int i = 0;
+        for(int j = 0;j<m;j++){
+            ans.push_back(matrix[i][j]);
+        }
+        if(n==1){
+            return ans;
+        }
+        int j = m-1;
+        for(i=1;i<n;i++){
+            ans.push_back(matrix[i][j]);
+        }
+        if(m==1){
+            return ans;
+        }
+        i = n-1;
+        for(j = m-2;j>=0;j--){
+            ans.push_back(matrix[i][j]);
+        }
+        j = 0;
+        for(i=n-2;i>0;i--){
+            ans.push_back(matrix[i][j]);
+        }
+        return ans;
+    }
+}; 
+
+********************************************************************************************************************
