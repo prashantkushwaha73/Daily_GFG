@@ -66,3 +66,26 @@ class Solution{
 };
 
 *************************************************************************************************
+**** Roman Number to Integer ( 04/10/23 ) ****
+
+class Solution {
+  public:
+    int romanToDecimal(string &str) {
+        unordered_map<char,pair<int,int>> m;
+        m['I']={1,1}; m['V']={5,2} ; m['X']= {10,3} ; m['L']={50,4}; m['C']={100,5}; m['D']={500,6}; m['M']={1000,7};
+        reverse(str.begin(),str.end());
+        int ans = 0;
+        for(int i=0;i<str.size();i++){
+            if(i<str.size()-1 && m[str[i]].second > m[str[i+1]].second){
+                ans += (m[str[i]].first - m[str[i+1]].first);
+                i++;
+            }
+            else{
+            ans += m[str[i]].first;
+            }
+        }
+        return ans;
+    }
+};
+
+*****************************************************************************************
