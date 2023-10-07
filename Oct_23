@@ -89,3 +89,43 @@ class Solution {
 };
 
 *****************************************************************************************
+**** Pairwise swap elements of a linked list ( 07/10/23 ) ****
+
+class Solution
+{
+    public:
+    Node* pairWiseSwap(struct Node* head) 
+    {
+        if(head->next == NULL){
+            return head;
+        }
+        Node* ans = head->next;
+        Node* first = head;
+        Node* second = head->next;
+        Node* temp = second->next;
+        second->next = first;
+        first->next = temp;
+        temp = first;
+        first=first->next;
+        if(first == NULL){
+            return ans;
+        }
+        second = first->next;
+        Node* pemp;
+        while(second){
+            pemp = second->next;
+            temp->next = second;
+            second->next = first;
+            first->next = pemp;
+            temp = first;
+             first=first->next;
+             if(first == NULL){
+                 break;
+             }
+        second = first->next;
+        }
+        return ans;
+    }
+};
+
+************************************************************************************
