@@ -129,3 +129,36 @@ class Solution
 };
 
 ************************************************************************************
+**** Insert in a Sorted List ( 10/08/23 ) ****
+
+class Solution{
+  public:
+    // Should return head of the modified linked list
+    Node *sortedInsert(struct Node* head, int data) {
+        Node* temp = new Node(data);
+        Node* trav = head;
+        if(head->data >= data){
+            temp->next = head;
+            return temp;
+        }
+        while(1){
+            if(trav->next){
+                if(trav->next->data >= data){
+                    temp->next = trav->next;
+                    trav->next = temp;
+                    return head;
+                }
+                else{
+                    trav = trav->next;
+                }
+            }
+            else{
+                break;
+            }
+        }
+        trav->next = temp;
+        return head;
+    }
+};
+
+**********************************************************************************************************
