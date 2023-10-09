@@ -162,3 +162,53 @@ class Solution{
 };
 
 **********************************************************************************************************
+**** Height of Binary Tree ( 09/10/23 ) ****
+
+
+//User function template for C++
+
+/*
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+};
+*/
+class Solution{
+    public:
+    //Function to find the height of a binary tree.
+    int height(struct Node* node){
+        int ans=0;
+        queue<Node*> store;
+        store.push(node);
+        store.push(NULL);
+        while(store.size()!=0){
+            Node* temp=store.front();
+            store.pop();
+            if(temp==NULL){
+                ans++;
+                if(store.size()!=0){
+                    store.push(NULL);
+                }
+            }
+             else{
+                    if(temp->left){
+                        store.push(temp->left);
+                    }
+                    if(temp->right){
+                        store.push(temp->right);
+                    }
+                }
+        }
+        return ans;
+    }
+};
+
+
+*************************************************************************************************************
