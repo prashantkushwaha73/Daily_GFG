@@ -269,3 +269,41 @@ public:
 };
 
 ***********************************************************************************************************
+**** Find Common Nodes in two BSTs ( 14/10/23 ) ****
+
+
+class Solution
+{
+    public:
+    
+    void solve2(Node* root,vector<int>& ans,unordered_map<int,bool>& m){
+        if(root == NULL){
+            return;
+        }
+        solve2(root->left,ans,m);
+        if(m[root->data]){
+            ans.push_back(root->data);
+        }
+        solve2(root->right,ans,m);
+    }
+   
+     void solve1(Node* root,unordered_map<int,bool>& m){
+         if(root==NULL){
+             return;
+         }
+         m[root->data] = true;
+         solve1(root->left,m);
+         solve1(root->right,m);
+     }
+     
+    vector <int> findCommon(Node *root1, Node *root2)
+    {
+       unordered_map<int,bool> m;
+       vector<int> ans;
+       solve1(root1,m);
+       solve2(root2,ans,m);
+       return ans;
+    }
+};
+
+**************************************************************************************************************
