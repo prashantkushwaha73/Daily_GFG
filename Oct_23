@@ -307,3 +307,36 @@ class Solution
 };
 
 **************************************************************************************************************
+**** Normal BST to Balanced BST ( 15/10/23 ) ****
+
+class Solution{
+    
+    public:
+    void solve1(Node* root,vector<int> &v){
+        if(root==NULL){
+            return;
+        }
+        solve1(root->left,v);
+        v.push_back(root->data);
+        solve1(root->right,v);
+    }
+    
+    Node* solve2(vector<int> v,int s,int e){
+        int mid = s+(e-s)/2;
+        Node* temp = new Node(v[mid]);
+        if(s<=mid-1){
+        temp->left = solve2(v,s,mid-1);}
+        if(mid+1<=e){
+        temp->right = solve2(v,mid+1,e);}
+        return temp;
+    }
+    
+    Node* buildBalancedTree(Node* root)
+    {
+    	vector<int> v;
+    	solve1(root,v);
+    	return solve2(v,0,v.size()-1);
+    }
+};
+
+*************************************************************************************
