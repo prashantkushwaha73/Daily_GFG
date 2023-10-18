@@ -340,3 +340,54 @@ class Solution{
 };
 
 *************************************************************************************
+**** Eventual Safe States ( 18/10/23 ) ****
+
+class Solution {
+  public:
+  
+     bool solve(vector<bool>& ans,vector<bool>& visited,vector<int> adj[],int n,unordered_map<int,bool>& m){
+         if(m[n]){
+             return ans[n];
+         }
+         for(int i=0;i<adj[n].size();i++){
+             if(visited[adj[n][i]]){
+                 return false;
+             }
+             if(ans[adj[n][i]] == false){
+                 return false;
+             }
+             visited[adj[n][i]] = true;
+             ans[adj[n][i]] = solve(ans,visited,adj,adj[n][i],m);
+             m[adj[n][i]] = true;
+             visited[adj[n][i]] = false;
+             if(ans[adj[n][i]]==false){
+                 return false;
+             }
+         }
+         return true;
+     }
+    vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
+        unordered_map<int,bool> m;
+        vector<bool> ans(V,true);
+        vector<bool> visited(V,false);
+        for(int i=0;i<V;i++){
+            if(m[i] == false){
+                 visited[i] = true;
+            if(ans[i]){
+            ans[i] = solve(ans,visited,adj,i,m);
+            m[i] = true;
+            }
+            visited[i] = false;
+            }
+        }
+        vector<int> final;
+        for(int i=0;i<ans.size();i++){
+            if(ans[i]){
+                final.push_back(i);
+            }
+        }
+        return final;
+    }
+};
+
+************************************************************************************************
