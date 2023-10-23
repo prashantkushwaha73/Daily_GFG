@@ -436,3 +436,38 @@ public:
 };
 
 ***********************************************************************************************
+**** Maximum sum increasing subsequence ( 23/10/23 ) ****
+
+class Solution{
+	public:
+	
+	int solve(int arr[],int n,int posi,vector<int>& dp){
+	    if(dp[posi] != -1){
+	        return dp[posi];
+	    }
+	    int v = 0,p;
+	    for(int i=posi+1;i<n;i++){
+	        p = 0;
+	        if(arr[i] > arr[posi]){
+	             p = arr[i] + solve(arr,n,i,dp);
+	        }
+	        v = max(v,p);
+	    }
+	    return dp[posi] = v;
+	}
+	
+	
+	int maxSumIS(int arr[], int n)  
+	{  
+	    vector<int> dp(n,-1);
+	    int ans = INT_MIN;
+	    int data;
+	    for(int i=0;i<n;i++){
+	       data = arr[i] + solve(arr,n,i,dp);
+	       ans = max(ans,data);
+	    }
+	    return ans;
+	}  
+};
+
+****************************************************************************************
