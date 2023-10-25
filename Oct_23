@@ -471,3 +471,35 @@ class Solution{
 };
 
 ****************************************************************************************
+**** Knapsack with Duplicate Items ( 25/10/23 ) ****
+
+class Solution{
+public:
+
+    int solve(int N, int W, int val[], int wt[],int count,vector<int>& dp){
+        if(count == W){
+            return 0;
+        }
+        if(dp[count]!= -1){
+            return dp[count];
+        }
+        int v = 0,data = 0;
+        for(int i=0;i<N;i++){
+            if(count+wt[i] <= W){
+                 data = val[i] + solve(N,W,val,wt,count+wt[i],dp);
+            v = max(v,data);
+            }
+        }
+        return dp[count] = v;
+        
+    }
+
+    int knapSack(int N, int W, int val[], int wt[])
+    {
+        int ans = 0;
+        vector<int> dp(W+1,-1);
+        return solve(N,W,val,wt,0,dp);
+    }
+};
+
+***************************************************************************************
