@@ -526,3 +526,33 @@ class Solution
 };
 
 ******************************************************************************
+**** Move all zeroes to end of array ( 31/10/23 ) ****
+
+class Solution{
+public:
+	void pushZerosToEnd(int arr[], int n) {
+	    int i=0;
+	    while(i<n){
+	        if(arr[i]==0){
+	            break;
+	        }
+	        i++;
+	    }
+	    int j=i+1;
+	        while(j<n){
+	            if(arr[j]!=0){
+	                swap(arr[i],arr[j]);
+	                j++;
+	                i++;
+	            }
+	            else{
+	                j++;
+	            if(j>=n){
+	                return;
+	            }
+	            }
+	        }
+	}
+};
+
+**************************************************************************
