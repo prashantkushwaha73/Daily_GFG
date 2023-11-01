@@ -1,0 +1,19 @@
+***********************************************************************************************************
+**** Frequencies of Limited Range Array Elements ( 01/11/23 ) ****
+
+class Solution{
+    public:
+    //Function to count the frequency of all elements from 1 to N in the array.
+    void frequencyCount(vector<int>& arr,int N, int P)
+    { 
+        vector<int> v(N,0);
+        for(int i=0;i<N;i++){
+            if(arr[i] > 0 && arr[i] <= N){
+                v[arr[i]-1]++;
+            }
+        }
+        arr = v;
+    }
+};
+
+************************************************************************************************************ 
