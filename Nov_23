@@ -17,3 +17,65 @@ class Solution{
 };
 
 ************************************************************************************************************ 
+**** Minimum distance between two numbers ( 02/11/23 ) ****
+
+class Solution{
+  public:
+  
+ void rev(int arr[],int n){
+     int i = 0,j = n-1;
+     while(i<j){
+         swap(arr[i],arr[j]);
+         i++; j--;
+     }
+ }
+   
+    bool check(int arr[],int n,int v){
+        for(int i=0;i<n;i++){
+            if(arr[i] == v){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+
+  
+    int minDist(int arr[], int n, int x, int y) {
+        if(check(arr,n,x)==false || check(arr,n,y)==false){
+            return -1;
+        }
+        int ans = INT_MAX;
+        int a =0,b=0;
+        while(b<n){
+            while(b<n && arr[b]!=y){
+                b++;
+            }
+            while(b<n && a<b){
+                if(arr[a]==x){
+                    ans = min(ans,abs(b-a));
+                }
+                a++;
+            }
+            b++;
+        }
+        
+        rev(arr,n);
+        a =0,b=0;
+        while(b<n){
+            while(b<n && arr[b]!=y){
+                b++;
+            }
+            while(b<n && a<b){
+                if(arr[a]==x){
+                    ans = min(ans,abs(b-a));
+                }
+                a++;
+            }
+            b++;
+        }
+        return ans;
+    }
+};
+
+**********************************************************************************************************
