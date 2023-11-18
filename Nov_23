@@ -271,3 +271,28 @@ class Solution
 };
 
 ***********************************************************************************************
+**** Reverse a Doubly Linked List ( 18/11/23 ) ****
+
+class Solution
+{
+    public:
+    Node* reverseDLL(Node * head)
+    {
+        Node* last = head;
+        while(last->next){
+            last = last->next;
+        }
+        Node* first = head;
+        while(first != last){
+            swap(first->data,last->data);
+            if(first->next == last){
+                break;
+            }
+            first = first->next;
+            last = last->prev;
+        }
+        return head;
+    }
+};
+
+*************************************************************************************************************
