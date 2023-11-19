@@ -296,3 +296,34 @@ class Solution
 };
 
 *************************************************************************************************************
+**** Intersection of two sorted Linked lists ( 19/11/23 ) ****
+
+class Solution
+{
+    public:
+    Node* findIntersection(Node* head1, Node* head2)
+    {
+        Node* first = head1;
+        Node* second = head2;
+        Node* ans = new Node(-1);
+        Node* temp = ans;
+        while(first && second){
+            if(first->data == second->data){
+                Node* pemp = new Node(first->data);
+                temp->next = pemp;
+                temp = pemp;
+                first=first->next;
+                second=second->next;
+            }
+            else if(first->data < second->data){
+                first=first->next;
+            }
+            else{
+                second=second->next;
+            }
+        }
+        return ans->next;
+    }
+};
+
+****************************************************************************************************
