@@ -1,0 +1,70 @@
+*********************************************************************************************************************
+**** Check whether BST contains Dead End ( 01/12/23 ) ****
+
+class Solution{
+  public:
+  
+    void solve(int ll,int lu,int rl,int ru,int val,bool& ans,Node* root,int dirx,bool& one,bool& two){
+    if(ans){
+        return;
+    }
+    if(dirx){
+        ll = root->data;
+        lu = val;
+        ru = root->data;
+    }
+    else{
+        ll = root->data;
+        rl = val;
+        ru = root->data;
+    }
+    if(root->left == NULL && root->right == NULL){
+        one=false; two=false;
+        if(lu==-1){
+           if(ll == 1){
+               one = true;
+           } 
+        }
+        else{
+            if(ll-lu <= 1){
+                one = true;
+            }
+        }
+        if(rl!=-1){
+            if(rl-ru <= 1){
+                two = true;
+            }
+        }
+        
+        if(one && two){
+            ans = true;
+            return;
+        }
+    }
+    
+    if(root->left){
+        solve(ll,lu,rl,ru,root->data,ans,root->left,0,one,two);
+    }
+    if(root->right){
+        solve(ll,lu,rl,ru,root->data,ans,root->right,1,one,two);
+    }
+}
+  
+    bool isDeadEnd(Node *root)
+    {
+       int ll = root->data,lu = -1,rl = -1,ru = root->data;
+    if(root->left == NULL && root->right == NULL){
+        return false;
+    }
+    bool ans = false,one,two;
+    if(root->left){
+        solve(ll,lu,rl,ru,root->data,ans,root->left,0,one,two);
+    }
+    if(root->right){
+        solve(ll,lu,rl,ru,root->data,ans,root->right,1,one,two);
+    }
+    return ans;
+    }
+};
+
+**********************************************************************************************************************************
