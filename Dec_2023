@@ -84,3 +84,43 @@ class Solution{
 };
 
 *******************************************************************************************************************************
+**** Brothers From Different Roots ( 03/12/23 ) ****
+
+class Solution
+{
+public:
+
+    void solve(Node* root,vector<int>& v){
+        if(root==NULL){
+            return;
+        }
+        solve(root->left,v);
+        v.push_back(root->data);
+        solve(root->right,v);
+    }
+     
+    int countPairs(Node* root1, Node* root2, int p)
+    {
+        int ans  = 0;
+          vector<int> v1;
+          solve(root1,v1);
+          vector<int> v2;
+          solve(root2,v2);
+          int i=0,j=v2.size()-1;
+          while(i<v1.size() && j>=0){
+              if(v1[i]+v2[j]==p){
+                  ans++;
+                  i++; j--;
+              }
+              else if(v1[i]+v2[j]<p){
+                  i++;
+              }
+              else{
+                  j--;
+              }
+          }
+          return ans;
+    }
+};
+
+*************************************************************************************************************
