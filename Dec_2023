@@ -185,3 +185,31 @@ class Solution
 };
 
 *********************************************************************************************************
+****
+
+class Solution{
+    public:
+    //Complete this function
+    //Function to check whether there is a subarray present with 0-sum or not.
+    bool subArrayExists(int arr[], int n)
+    {
+        unordered_map<int,bool> m;
+        int sum = 0;
+        for(int i=0;i<n;i++){
+            if(arr[i]==0){
+                return true;
+            }
+            sum+=arr[i];
+            if(sum==0){
+                return true;
+            }
+            if(m[sum]){
+                return true;
+            }
+            m[sum]=true;
+        }
+        return false;
+    }
+};
+
+********************************************************************************************************************
