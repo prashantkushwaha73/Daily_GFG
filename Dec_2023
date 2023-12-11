@@ -213,3 +213,28 @@ class Solution{
 };
 
 ********************************************************************************************************************
+**** Max Sum Subarray of size K ( 11/12/23 ) ****
+
+class Solution{   
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr , int N){
+        int s=0,e=0;
+        long sum=0,ans;
+        for(e;e<K;e++){
+            sum+=Arr[e];
+        }
+        ans=sum;
+        while(e<N){
+            sum+=Arr[e];
+            sum-=Arr[s];
+            if(sum>ans){
+                ans=sum;
+            }
+            s++;
+            e++;
+        }
+        return ans;
+    }
+};
+
+*******************************************************************************************************************************
