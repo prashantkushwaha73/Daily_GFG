@@ -271,3 +271,30 @@ public:
 };
 
 *****************************************************************************************************************************
+**** Anti Diagonal Traversal of Matrix ( 27/12/23 ) ****
+
+class Solution {
+  public:
+    vector<int> antiDiagonalPattern(vector<vector<int>> mat) 
+    {
+          vector<int> ans;
+          int r=mat.size(),c=mat[0].size(),a,b;
+          for(int i=0;i<c;i++){
+              a=0; b=i;
+              while(a<r && b>=0){
+                  ans.push_back(mat[a][b]);
+                  a++; b--;
+              }
+          }
+          for(int i=1;i<r;i++){
+              a=i; b=c-1;
+              while(a<r && b>=0){
+                  ans.push_back(mat[a][b]);
+                  a++; b--;
+              }
+          }
+          return ans;
+    }
+};
+
+***********************************************************************************************************************************
