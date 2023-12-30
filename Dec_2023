@@ -298,3 +298,39 @@ class Solution {
 };
 
 ***********************************************************************************************************************************
+**** Winner of an election ( 30/12/23 ) ****
+
+class Solution{
+  public:
+    //Function to return the name of candidate that received maximum votes.
+    vector<string> winner(string arr[],int n)
+    {
+        string ans1;
+        int ans2=INT_MIN;
+        sort(arr,arr+n);
+        int count=1; string str=arr[0];
+        for(int i=1;i<n;i++){
+            if(arr[i]!=str){
+                if(count > ans2){
+                    ans2=count;
+                    ans1=str;
+                }
+                str = arr[i];
+                count =1;
+            }
+            else{
+                count++;
+            }
+        }
+        if(count > ans2){
+                    ans2=count;
+                    ans1=str;
+                }
+         vector<string> ans;
+         ans.push_back(ans1);
+         ans.push_back(to_string(ans2));
+        return ans;
+    }
+};
+
+************************************************************************************************************
