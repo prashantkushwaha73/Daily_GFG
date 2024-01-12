@@ -1,0 +1,32 @@
+*************************************************************************************************************
+**** Reverse First K elements of Queue ( 12/01/24 ) ****
+
+class Solution
+{
+    public:
+    queue<int> modifyQueue(queue<int> q, int k) {
+        stack<int> s;
+        queue<int> p;
+        while(!q.empty()){
+            if(s.size()<k){
+                s.push(q.front());
+                q.pop();
+            }
+            else{
+                p.push(q.front());
+                q.pop();
+            }
+        }
+        while(!s.empty()){
+            q.push(s.top());
+            s.pop();
+        }
+        while(!p.empty()){
+            q.push(p.front());
+            p.pop();
+        }
+        return q;
+    }
+};
+
+********************************************************************************************************************
