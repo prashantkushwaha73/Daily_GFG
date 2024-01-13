@@ -30,3 +30,31 @@ class Solution
 };
 
 ********************************************************************************************************************
+**** Insertion Sort for Singly Linked List ( 13/01/24 ) ****
+
+class Solution
+{
+    public:
+    Node* insertionSort(struct Node* head)
+    {
+        Node* ans = head;
+        Node* final = head;
+        Node* temp;
+        Node* store;
+        while(ans){
+            store = ans;
+            temp = ans;
+            while(temp){
+                if(temp->data < store->data){
+                    store = temp;
+                }
+                temp=temp->next;
+            }
+            swap(ans->data,store->data);
+            ans=ans->next;
+        }
+        return final;
+    }
+};
+
+****************************************************************************************************************************
