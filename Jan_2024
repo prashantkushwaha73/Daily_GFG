@@ -58,3 +58,30 @@ class Solution
 };
 
 ****************************************************************************************************************************
+**** Find duplicate rows in a binary matrix ( 14/01/24 ) ****
+
+class Solution
+{   
+    public:
+    vector<int> repeatedRows(vector<vector<int>> &matrix, int M, int N) 
+    { 
+        unordered_map<string,bool> m;
+        vector<int> ans;
+        string str="";
+        for(int i=0;i<M;i++){
+            str = "";
+            for(int j=0;j<N;j++){
+                str+=to_string(matrix[i][j]);
+            }
+            if(m[str]){
+                ans.push_back(i);
+            }
+            else{
+                m[str]=true;
+            }
+        }
+        return ans;
+    } 
+};
+
+************************************************************************************************************************
