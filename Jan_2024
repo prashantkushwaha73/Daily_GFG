@@ -85,3 +85,66 @@ class Solution
 };
 
 ************************************************************************************************************************
+**** Check if a given graph is tree or not ( 24/01/24 ) ****
+
+class Solution {
+  public:
+  
+    void compo(int n,vector<bool>& visited,vector<vector<int>>& edges){
+        for(int i=0;i<edges[n].size();i++){
+            if(visited[edges[n][i]]==false){
+                visited[edges[n][i]]=true;
+                compo(edges[n][i],visited,edges);
+            }
+        }
+    }
+    bool check(vector<vector<int>>& edges,vector<int>& parent,vector<bool>& visited,queue<int>& q){
+        int v;
+        while(!q.empty()){
+           v = q.front();
+           q.pop();
+           for(int i=0;i<edges[v].size();i++){
+               if(visited[edges[v][i]]){
+                   if(edges[v][i]!=parent[v]){
+                       return false;
+                   }
+               }
+               else{
+                   visited[edges[v][i]]=true;
+                   parent[edges[v][i]]=v;
+                   q.push(edges[v][i]);
+               }
+           }
+        }
+        return true;
+    }
+    int isTree(int n, int m, vector<vector<int>> &adj) {
+        vector<vector<int>> edges(n);
+        for(int i=0;i<m;i++){
+            edges[adj[i][0]].push_back(adj[i][1]);
+            edges[adj[i][1]].push_back(adj[i][0]);
+        }
+        vector<bool> visited(n,false);
+        int count=0;
+        for(int i=0;i<n;i++){
+            if(visited[i]==false){
+                visited[i]=true;
+                count++;
+                compo(i,visited,edges);
+            }
+        }
+        if(count!=1){
+            return false;
+        }
+        vector<int> parent(n,-1);
+        for(int i=0;i<n;i++){
+            visited[i]=false;
+        }
+        queue<int> q;
+        q.push(0);
+        visited[0]=true;
+        return check(edges,parent,visited,q);
+    }
+};
+
+****************************************************************************************************************
