@@ -1,0 +1,27 @@
+**************************************************************************************************************************************
+**** Panagram Checking ( 02/01/24 ) ****
+
+class Solution
+{
+  public:
+    //Function to check if a string is Pangram or not.
+    bool checkPangram (string s) {
+        vector<bool> flag(26);
+        for(int i=0;i<s.size();i++){
+            if(int(s[i])<=90 && int(s[i])>=65){
+                flag[s[i]-'A']=true;
+            }
+            else if(int(s[i])<=122 && int(s[i])>=97){
+                flag[s[i]-'a']=true;
+            }
+        }
+        for(int i=0;i<flag.size();i++){
+            if(flag[i]==false){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+****************************************************************************************************************************************
