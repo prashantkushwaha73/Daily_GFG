@@ -69,3 +69,61 @@ class Solution{
 };
 
 ***************************************************************************************************************************
+**** Sorted insert for circular linked list ( 05/02/24 ) ****
+
+class Solution
+{
+    public:
+    Node *sortedInsert(Node* head, int data)
+    {
+       Node* temp = head;
+       if(temp==NULL){
+           Node* ans = new Node(data);
+           temp = ans;
+           ans->next = ans;
+           return ans;
+       }
+       if(temp->next == temp){
+           if(data <= temp->data){
+               Node* ans = new Node(data);
+               temp->next = ans;
+               ans->next = temp;
+               return ans;
+           }
+           else{
+               Node* pemp = new Node(data);
+               pemp->next = temp;
+               temp->next = pemp;
+               return temp;
+           }
+       }
+       Node* p = head;
+           while(p->next != head){
+               p=p->next;
+           }
+       if(data < head->data || data > p->data){
+           if(data > p->data){
+               Node* ans = new Node(data);
+               ans->next = p->next;
+               p->next = ans;
+               return head;
+           }
+           Node* ans = new Node(data);
+           p->next = ans;
+           ans->next = head;
+           return ans;
+       }
+       while(1){
+           if(data <= temp->next->data && data >= temp->data){
+               Node* pemp = new Node(data);
+               pemp->next = temp->next;
+               temp->next = pemp;
+               return head;
+           }
+           temp=temp->next;
+       }
+       return temp;
+    }
+};
+
+***************************************************************************************************************************
