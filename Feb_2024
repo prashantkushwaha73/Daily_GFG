@@ -127,3 +127,40 @@ class Solution
 };
 
 ***************************************************************************************************************************
+**** Count the nodes at distance K from leaf ( 06/02/24 ) ****
+
+class Solution
+{
+    public:
+    //Function to return count of nodes at a given distance from leaf nodes.
+    
+    void solve(Node* root,vector<Node*>& v,unordered_map<Node*,bool>& m,int& k,int& size){
+        v.push_back(root);
+        size = v.size();
+        if(root->left==NULL && root->right==NULL){
+            if(size-k >0){
+                m[v[size-k-1]]=true;
+            }
+        }
+        else{
+            if(root->left){
+                solve(root->left,v,m,k,size);
+            }
+            if(root->right){
+                solve(root->right,v,m,k,size);
+            }
+        }
+        v.pop_back();
+    }
+    
+    int printKDistantfromLeaf(Node* root, int k)
+    {
+    	vector<Node*> v;
+    	unordered_map<Node*,bool> m;
+    	int size;
+    	solve(root,v,m,k,size);
+    	return m.size();
+    }
+};
+
+************************************************************************************************************************
