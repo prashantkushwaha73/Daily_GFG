@@ -230,3 +230,41 @@ class Solution{
 };
 
 ***************************************************************************************************************************
+**** Check if all leaves are at same level ( 28/02/24 ) ****
+
+class Solution{
+  public:
+   
+    void solve(Node* root,bool& ans,int& d,bool& flag,int count){
+        if(root==NULL){
+            return;
+        }
+        if(root->left==NULL && root->right==NULL){
+            if(flag){
+                if(count!=d){
+                    ans = false;
+                }
+            }
+            else{
+                flag = true;
+                d = count;
+            }
+        }
+        else{
+            solve(root->left,ans,d,flag,count+1);
+            solve(root->right,ans,d,flag,count+1);
+        }
+    }
+  
+    /*You are required to complete this method*/
+    bool check(Node *root)
+    {
+        bool ans = true;
+        int d = -1,count=0;
+        bool flag = false;
+        solve(root,ans,d,flag,0);
+        return ans;
+    }
+};
+
+**************************************************************************************************************************************
