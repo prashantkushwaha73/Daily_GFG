@@ -230,7 +230,7 @@ class Solution{
 };
 
 ***************************************************************************************************************************
-**** Check if all leaves are at same level ( 28/02/24 ) ****
+**** Check if all leaves are at same level ( 8/02/24 ) ****
 
 class Solution{
   public:
