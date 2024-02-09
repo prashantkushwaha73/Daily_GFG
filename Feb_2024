@@ -268,3 +268,40 @@ class Solution{
 };
 
 **************************************************************************************************************************************
+**** Check for Children Sum Property in a Binary Tree ( 09/02/24 ) ****
+
+class Solution{
+    public:
+    
+    void solve(Node* root,bool& ans){
+        if(root==NULL){
+            return;
+        }
+        if(root->left && root->right){
+            if(root->left->data+root->right->data != root->data){
+                ans = false;
+            }
+        }
+        else if(root->left){
+            if(root->left->data != root->data){
+                ans = false;
+            }
+        }
+        else if(root->right){
+            if(root->right->data != root->data){
+                ans = false;
+            }
+        }
+        solve(root->left,ans);
+        solve(root->right,ans);
+    }
+    
+    int isSumProperty(Node *root)
+    {
+       bool ans = true;
+       solve(root,ans);
+       return ans;
+    }
+};
+
+********************************************************************************************************************
