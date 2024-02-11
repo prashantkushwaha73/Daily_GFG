@@ -305,3 +305,36 @@ class Solution{
 };
 
 ********************************************************************************************************************
+**** Recamans sequence ( 11/02/24 ) ****
+
+class Solution{
+public:
+   int solve(int n,vector<int>& dp,unordered_map<int,bool>& m){
+       if(dp[n]!=-1){
+           return dp[n];
+       }
+       int v1 = solve(n-1,dp,m)-n;
+       if(v1>0 && m[v1]==false){
+           m[v1]=true;
+           return dp[n] = v1;
+       }
+       v1 = solve(n-1,dp,m)+n;
+       m[v1]=true;
+       return dp[n] = v1;
+   }
+
+    vector<int> recamanSequence(int n){
+        vector<int> dp(n+1,-1);
+        unordered_map<int,bool> m;
+        vector<int> ans;
+        ans.push_back(0);
+        m[0]=true;
+        dp[0]=0;
+        for(int i=1;i<=n;i++){
+            ans.push_back(solve(i,dp,m));
+        }
+        return ans;
+    }
+};
+
+*************************************************************************************************************************************
