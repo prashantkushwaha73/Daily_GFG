@@ -360,3 +360,35 @@ public:
 };
 
 *******************************************************************************************************************************************
+**** Flatten BST to sorted list ( 16/02/24 ) ****
+
+class Solution
+{
+public:
+   
+    void fill(Node* root,vector<Node*>& v){
+        if(root==NULL){
+            return;
+        }
+        fill(root->left,v);
+        v.push_back(root);
+        fill(root->right,v);
+    }
+
+    Node *flattenBST(Node *root)
+    {
+        vector<Node*> v;
+        fill(root,v);
+        Node* ans = v[0];
+        ans->left = NULL;
+        Node* temp = ans;
+        for(int i=1;i<v.size();i++){
+            temp->right = v[i];
+            v[i]->left = NULL;
+            temp = v[i];
+        }
+        return ans;
+    }
+};
+
+****************************************************************************************************************************
