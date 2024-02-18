@@ -415,3 +415,29 @@ class Solution{
 };
 
 *********************************************************************************************************************************
+**** Sum of leaf nodes in BST ( 18/02/24 ) ****
+
+class Solution
+{
+    public:
+        /*You are required to complete below method */
+        
+        void solve(Node* root,int& ans){
+            if(root==NULL){
+                return;
+            }
+            if(root->left==NULL && root->right==NULL){
+                ans+=root->data;
+            }
+            solve(root->left,ans);
+            solve(root->right,ans);
+        }
+        
+        int sumOfLeafNodes(Node *root ){
+             int ans = 0;
+             solve(root,ans);
+             return ans;
+        }
+};
+
+*****************************************************************************************************************************************
