@@ -441,3 +441,34 @@ class Solution
 };
 
 *****************************************************************************************************************************************
+**** Word Break ( 20/02/24 ) ****
+
+class Solution
+{
+public:
+    
+    void solve(unordered_map<string,bool>& m,string s,bool& ans){
+        if(s.size()==0){
+            ans = true; 
+            return;
+        }
+        for(int i=1;i<=s.size();i++){
+            if(m[s.substr(0,i)]){
+                solve(m,s.substr(i,s.size()-i),ans);
+            }
+        }
+        
+    }
+
+    int wordBreak(int n, string A, vector<string> &B) {
+        unordered_map<string,bool> m;
+        for(int i=0;i<B.size();i++){
+            m[B[i]]=true;
+        }
+        bool ans = false;
+        solve(m,A,ans);
+        return ans;
+    }
+};
+
+****************************************************************************************************************************
