@@ -524,3 +524,33 @@ class Solution
 };
 
 ***************************************************************************************************************************
+**** Power Set ( 26/02/24 ) ****
+
+class Solution{
+	public:
+	   
+	   void solve(string s,int ind,string str,vector<string>& ans){
+	       if(ind>=s.size()){
+	           ans.push_back(str);
+	       }
+	       if(s[ind]-'a'>=0){
+	           solve(s,ind+1,str+s[ind],ans);
+	           solve(s,ind+1,str,ans);
+	       }
+	   }
+	
+		vector<string> AllPossibleStrings(string s){
+		     vector<string> ans;
+		     int n = s.size();
+		     string p;
+		     for(int i=0;i<n;i++){
+		         p="";
+		         p.push_back(s[i]);
+		         solve(s,i+1,p,ans);
+		     }
+		     sort(ans.begin(),ans.end());
+		     return ans;
+		}
+};
+
+********************************************************************************************************************************
