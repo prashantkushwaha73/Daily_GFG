@@ -109,3 +109,57 @@ public:
 };
 
 ***********************************************************************************************************************************
+**** Print matrix in diagonal pattern ( 13/03/24 ) ****
+
+class Solution{
+  public:
+     void solve(vector<vector<int>>&mat,int& x,int& y,bool& flag,vector<int>& ans){
+        int r = mat.size(), c = mat[0].size();
+        ans.push_back(mat[x][y]);
+        if(flag){
+            if(x-1>=0 && y+1<=c-1){
+                x--; y++;
+            }
+            else{
+                if( x==0 && y+1<c){
+                    y++;
+                    flag=false;
+                }
+                else if(y==c-1 && x+1<r){
+                    x++;
+                    flag=false;
+                }
+            }
+        }
+        else{
+            if(x+1 < r && y-1 >=0){
+                x++; y--;
+            }
+            else{
+                if(y==0 && x+1<r){
+                    x++;
+                    flag = true;
+                }
+                else if(x==r-1 && y+1<c){
+                    y++;
+                    flag = true;
+                }
+            }
+        }
+    }
+    vector<int> matrixDiagonally(vector<vector<int>>&mat)
+    {
+        vector<int> ans;
+         int count  = 0;
+         int last = pow(mat.size(),2);
+         int x = 0,y = 0;
+         bool flag = true;
+         while(count<last){
+             solve(mat,x,y,flag,ans);
+             count++;
+         }
+         return ans;
+    }
+};
+
+***************************************************************************************************************************************
