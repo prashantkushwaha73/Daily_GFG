@@ -194,3 +194,37 @@ class Solution
 };
 
 ********************************************************************************************************************************
+**** Sum of nodes on the longest path from root to leaf node ( 20/03/24 ) ****
+
+class Solution
+{
+public:
+    void solve(Node* root,int gin,int sum,int& ans,int& count){
+        gin += 1; sum += root->data;
+        if(root->left==NULL && root->right==NULL){
+            if(gin>count){
+                count=gin;
+                ans = sum;
+            }
+            else if(gin==count){
+                ans = max(ans,sum);
+            }
+        }
+        if(root->left){
+            solve(root->left,gin,sum,ans,count);
+        }
+        if(root->right){
+            solve(root->right,gin,sum,ans,count);
+        }
+    }
+    
+    int sumOfLongRootToLeafPath(Node *root)
+    {
+        int ans = 0;
+        int count = 0;
+        solve(root,0,0,ans,count);
+        return ans;
+    }
+};
+
+*********************************************************************************************************************
