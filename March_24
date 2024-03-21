@@ -228,3 +228,53 @@ public:
 };
 
 *********************************************************************************************************************
+**** ZigZag Tree Traversal ( 21/03/24 ) ****
+
+class Solution{
+    public:
+    //Function to store the zig zag order traversal of tree in a list.
+    vector <int> zigZagTraversal(Node* root)
+    {
+    	queue<Node*> q;
+    	vector<int> ans;
+    	vector<int> store;
+    	q.push(root);
+    	q.push(NULL);
+    	bool flag=true;
+    	while(!q.empty()){
+    	    Node* temp=q.front();
+    	    q.pop();
+    	    if(temp==NULL){
+    	        if(flag){
+    	            for(int i=0;i<store.size();i++){
+    	                ans.push_back(store[i]);
+    	            }
+    	            flag=!flag;
+    	            store.clear();
+    	        }
+    	        else{
+    	            for(int i=store.size()-1;i>=0;i--){
+    	                ans.push_back(store[i]);
+    	            }
+    	            flag=!flag;
+    	            store.clear();
+    	        }
+    	        if(!q.empty()){
+    	            q.push(NULL);
+    	        }
+    	    }
+    	    else{
+    	        store.push_back(temp->data);
+    	        if(temp->left){
+    	            q.push(temp->left);
+    	        }
+    	        if(temp->right){
+    	            q.push(temp->right);
+    	        }
+    	    }
+    	}
+    	return ans;
+    }
+};
+
+**************************************************************************************************************************
