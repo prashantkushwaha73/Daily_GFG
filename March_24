@@ -306,3 +306,23 @@ class Solution {
 };
 
 *************************************************************************************************************************************
+**** Insert an Element at the Bottom of a Stack ( 24/03/24 ) **** 
+
+class Solution{
+public:
+    stack<int> insertAtBottom(stack<int> st,int x){
+        vector<int> v;
+        while(!st.empty()){
+            v.push_back(st.top());
+            st.pop();
+        }
+        v.push_back(x);
+        reverse(v.begin(),v.end());
+        for(int i=0;i<v.size();i++){
+            st.push(v[i]);
+        }
+        return st;
+    }
+};
+
+*******************************************************************************************************************************************
