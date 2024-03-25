@@ -326,3 +326,31 @@ public:
 };
 
 *******************************************************************************************************************************************
+**** Print N-bit binary numbers having more 1s than 0s ( 25/03/24 ) ****
+
+class Solution{
+public:	
+    void solve(int n,int o,int z,string str,vector<string>& ans){
+        if(n==0){
+            ans.push_back(str);
+            return;
+        }
+        if(o>z){
+            solve(n-1,o+1,z,str+'1',ans);
+            solve(n-1,o,z+1,str+'0',ans);
+        }
+        else if(z==o){
+            solve(n-1,o+1,z,str+'1',ans);
+        }
+    }
+   
+	vector<string> NBitBinary(int n)
+	{
+	   vector<string> ans;
+	   string str = "";
+	   solve(n,0,0,str,ans);
+	   return ans;
+	}
+};
+
+**********************************************************************************************************************************************
