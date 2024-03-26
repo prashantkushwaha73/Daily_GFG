@@ -354,3 +354,44 @@ public:
 };
 
 **********************************************************************************************************************************************
+**** Additive sequence ( 26/03/24 ) ****
+
+class Solution {
+  public:
+  
+    bool solve(string n,long long a,long long b,int i){
+         long long s;
+         while(i<n.size()){
+             s = n[i]-'0';
+             while(i+1<n.size() && s<a+b){
+                 i++;
+                  s = (s*10) + n[i]-'0';
+             }
+             if(s!=(a+b)){
+                 return false;
+             }
+             a=b; b=s;
+             i++;
+         }
+         return true;
+    }
+  
+    bool isAdditiveSequence(string n) {
+        long long a=0,b=0;
+        for(int i=0;i<n.size();i++){
+            a = (a*10)+n[i]-'0';
+            b = 0;
+            for(int j=i+1;j<n.size();j++){
+                b = (b*10)+n[j]-'0';
+                if(j+1<n.size()){
+                    if(solve(n,a,b,j+1)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
+
+*********************************************************************************************************************************
