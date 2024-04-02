@@ -1,0 +1,34 @@
+*************************************************************************************************************************************
+**** Minimum Absolute Difference In BST ( 02/04/24 ) ****
+
+class Solution
+{
+    public:
+    
+    void solve(Node* root,int& a,int& ans){
+        if(root==NULL){
+            return;
+        }
+        solve(root->left,a,ans);
+        if(root->data != a){
+            ans = min(ans,abs(a-root->data));
+            a=root->data;
+        }
+        solve(root->right,a,ans);
+    }
+    
+    int absolute_diff(Node *root)
+    {
+        int ans = INT_MAX;
+        int a = root->data;
+        Node* temp = root;
+        while(temp->left){
+            temp = temp->left;
+            a = temp->data;
+        }
+        solve(root,a,ans);
+        return ans;
+    }
+};
+
+*********************************************************************************************************************************
