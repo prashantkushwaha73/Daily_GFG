@@ -32,3 +32,47 @@ class Solution
 };
 
 *********************************************************************************************************************************
+**** Optimal Strategy For A Game ( 08/04/24 ) ****
+
+class Solution{
+    public:
+    
+    long long solve(int i,int j,int n,int arr[],vector<vector<long long>>& dp){
+        if(i>j){
+            return 0;
+        }
+            if(dp[i][j]!=-1){
+                return dp[i][j];
+            }
+            if(i==j){
+                return arr[i];
+            }
+            
+            long long left,right,a,b,c,d;
+    
+                
+                    a = arr[i] + solve(i+2,j,n,arr,dp);
+                
+                
+                   b = arr[i] + solve(i+1,j-1,n,arr,dp);
+                   
+                   left = min(a,b);
+            
+                
+                    c = arr[j] + solve(i,j-2,n,arr,dp);
+        
+        
+                   d = arr[j] + solve(i+1,j-1,n,arr,dp);
+                   
+                   right = min(c,d);
+                
+        return dp[i][j] = max(left,right);
+    }
+    
+    long long maximumAmount(int n, int arr[]){
+        vector<vector<long long>> dp(n,vector<long long> (n,-1));
+        return solve(0,n-1,n,arr,dp);
+    }
+};
+
+********************************************************************************************************************************
