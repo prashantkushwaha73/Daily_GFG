@@ -257,4 +257,98 @@ public:
     }
 };
 
-************************************************************************************************************************************* 
+*************************************************************************************************************************************
+**** Exit Point in a Matrix ( 26/04/24 ) ****
+
+class Solution {
+  public:
+    vector<int> FindExitPoint(int n, int m, vector<vector<int>>& matrix) {
+        char dir = 'r';
+        int x=0,y=0;
+        while(1){
+            if(dir=='r'){
+                if(matrix[x][y]==0){
+                    if(y+1 < m){
+                        y++;
+                    }
+                    else{
+                        return {x,y};
+                    }
+                }
+                else{
+                    if(x+1 < n){
+                        matrix[x][y]=0;
+                        x++;
+                        dir = 'd';
+                    }
+                    else{
+                        return {x,y};
+                    }
+                }
+            }
+            if(dir=='l'){
+                if(matrix[x][y]==0){
+                    if(y-1 >= 0){
+                        y--;
+                    }
+                    else{
+                        return {x,y};
+                    }
+                }
+                else{
+                    if(x-1 >= 0){
+                        matrix[x][y]=0;
+                        x--;
+                        dir = 'u';
+                    }
+                    else{
+                        return {x,y};
+                    }
+                }
+            }
+            if(dir=='u'){
+                if(matrix[x][y]==0){
+                    if(x-1 >= 0){
+                        x--;
+                    }
+                    else{
+                        return {x,y};
+                    }
+                }
+                else{
+                    if(y+1 < m){
+                        matrix[x][y]=0;
+                        y++;
+                        dir = 'r';
+                    }
+                    else{
+                        return {x,y};
+                    }
+                }
+            }
+            if(dir=='d'){
+                if(matrix[x][y]==0){
+                    if(x+1 < n){
+                        x++;
+                    }
+                    else{
+                        return {x,y};
+                    }
+                }
+                else{
+                    if(y-1 >= 0){
+                        matrix[x][y]=0;
+                        y--;
+                        dir = 'l';
+                    }
+                    else{
+                        return {x,y};
+                    }
+                }
+            }
+        }
+        return {-1,-1};
+    }
+};
+
+*******************************************************************************************************************************************
