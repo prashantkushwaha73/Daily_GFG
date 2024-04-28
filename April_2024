@@ -352,3 +352,34 @@ class Solution {
 };
 
 *******************************************************************************************************************************************
+**** Delete Middle of Linked List ( 28/04/24 ) ****
+
+class Solution{
+    public:
+    Node* deleteMid(Node* head)
+    {
+        Node* first = head;
+        Node* second = head->next;
+        Node* prev;
+        if(second==NULL){
+            return NULL;
+        }
+        if(second->next == NULL){
+            head->next = NULL;
+            return head;
+        }
+        first = first->next;
+        second = second->next;
+        prev = head;
+        while( !(second == NULL || second->next == NULL)){
+            //cout<<prev->data<<" "<<first->data<<" "<<second->data<<endl;
+            first = first->next;
+            second = second->next->next;
+            prev = prev->next;
+        }
+        prev->next = first->next;
+        return head;
+    }
+};
+
+********************************************************************************************************************************
