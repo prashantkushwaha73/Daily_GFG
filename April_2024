@@ -383,3 +383,32 @@ class Solution{
 };
 
 ********************************************************************************************************************************
+**** Remove every kth node ( 29/04/24 ) ****
+
+class Solution {
+    public:
+    Node* deleteK(Node *head,int k){
+      Node* temp = head;
+      int count = 1;
+      if(k==1){
+          return NULL;
+      }
+      while(temp){
+          if(count == k-1){
+              if(temp->next){
+                   temp->next = temp->next->next;
+              }
+             
+              temp = temp->next;
+              count = 1;
+          }
+          else{
+              count++;
+              temp = temp->next;
+          }
+      }
+      return head;
+    }
+};
+
+***********************************************************************************************************************
