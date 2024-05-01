@@ -1,0 +1,47 @@
+************************************************************************************************************************
+**** Arrange Consonants and Vowels ( 01/05/24 ) ****
+
+class Solution {
+  public:
+    // task is to complete this function
+    // function should return head to the list after making
+    // necessary arrangements
+    
+    bool check(char c){
+        if(c=='a' || c=='e' || c=='i' || c=='o' || c=='u'){
+            return true;
+        }
+        return false;
+    }
+    
+    struct Node* arrangeCV(Node* head) {
+        Node* v=new Node('1');
+        Node* c=new Node('1');
+        Node* tv=v; Node* tc=c;
+        Node* temp = head;
+        while(temp){
+            if(check(temp->data)){
+                head = temp->next;
+                temp->next = NULL;
+                tv->next = temp;
+                tv = temp;
+                temp = head;
+            }
+            else{
+                head = temp->next;
+                temp->next = NULL;
+                tc->next = temp;
+                tc = temp;
+                temp = head;
+            }
+        }
+        if(tv->data != '1'){
+            Node* ans = v->next;
+            tv->next = c->next;
+            return ans;
+        }
+        return c->next;
+    }
+};
+
+**************************************************************************************************************************************
