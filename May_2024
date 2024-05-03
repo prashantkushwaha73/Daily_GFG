@@ -45,3 +45,30 @@ class Solution {
 };
 
 **************************************************************************************************************************************
+**** K distance from root ( 03/05/24 ) ****
+
+class Solution
+{
+    public:
+    // function should print the nodes at k distance from root
+    
+    void solve(Node* root,int count,int& k,vector<int>& ans){
+        if(root==NULL){
+            return;
+        }
+        if(count==k){
+            ans.push_back(root->data);
+        }
+        solve(root->left,count+1,k,ans);
+        solve(root->right,count+1,k,ans);
+    }
+    
+    vector<int> Kdistance(struct Node *root, int k)
+    {
+      vector<int> ans;
+      solve(root,0,k,ans);
+      return ans;
+    }
+};
+
+******************************************************************************************************************************************
