@@ -72,3 +72,34 @@ class Solution
 };
 
 ******************************************************************************************************************************************
+**** Vertical sum ( 05/05/24 ) ****
+
+class Solution{
+  public:
+  
+   void solve(Node* root,int posi,map<int,int>& m){
+       if(root==NULL){
+           return;
+       }
+       if(m[posi]){
+           m[posi]+=root->data;
+       }
+       else{
+           m[posi]=root->data;
+       }
+       solve(root->left,posi-1,m);
+       solve(root->right,posi+1,m);
+   }
+  
+    vector <int> verticalSum(Node *root) {
+        map<int,int> m;
+        solve(root,0,m);
+        vector<int> ans;
+        for(auto i:m){
+            ans.push_back(i.second);
+        }
+        return ans;
+    }
+};
+
+*************************************************************************************************************************
