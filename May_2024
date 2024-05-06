@@ -103,3 +103,31 @@ class Solution{
 };
 
 *************************************************************************************************************************
+**** Print all nodes that don't have sibling ( 06/05/24 ) ****
+
+void solve(Node* root,vector<int>& ans){
+    if(root==NULL){
+        return;
+    }
+    if(root->left && root->right == NULL){
+        ans.push_back(root->left->data);
+    }
+    else if(root->left == NULL && root->right){
+        ans.push_back(root->right->data);
+    }
+    solve(root->left,ans);
+    solve(root->right,ans);
+}
+
+vector<int> noSibling(Node* node)
+{
+    vector<int> ans;
+    solve(node,ans);
+    sort(ans.begin(),ans.end());
+    if(ans.size()){
+        return ans;
+    }
+    return {-1};
+}
+
+********************************************************************************************************************************
