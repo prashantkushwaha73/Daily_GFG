@@ -274,6 +274,54 @@ class Solution{
 };
 
 ******************************************************************************************************************************************************
-****
+**** K closest elements (  21/05/24 ) ****
+
+class Solution {
+  public:
+  
+    class Compare {
+    public:
+       bool operator()(pair<int,int> a,pair<int,int> b){
+           if(a.first == b.first){
+               if(a.second > b.second){
+                   return true;
+               }
+               else{
+                   return false;
+               }
+           }
+           else if(a.first<b.first){
+               return true;
+           }
+           else{
+               return false;
+           }
+      }
+};
+  
+    vector<int> printKClosest(vector<int> arr, int n, int k, int x) {
+        priority_queue<pair<int,int>,vector<pair<int,int>>,Compare> pq;
+        for(int i=0;i<arr.size();i++){
+            pq.push({abs(x-arr[i]),arr[i]});
+        }
+        vector<int> ans;
+        stack<pair<int,int>> st;
+        while(!pq.empty()){
+            st.push(pq.top());
+            pq.pop();
+        }
+        if(st.top().second==x){
+            st.pop();
+        }
+        while(k){
+           ans.push_back(st.top().second);
+           st.pop();
+           k--;
+        }
+        return ans;
+    }
+};
+
+***********************************************************************************************************************************************
 
 
