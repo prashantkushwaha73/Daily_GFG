@@ -345,5 +345,44 @@ class Solution {
 };
 
 *******************************************************************************************************************************************************
+**** Minimum cost to fill given weight in a bag ( 28/05/24 ) ****
+
+class Solution {
+  public:
+  
+    int solve(int w,vector<int>& cost,vector<int>& dp){
+        if(w==0){
+            return 0;
+        }
+        if(w<0){
+            return -1;
+        }
+        if(dp[w]!=-1){
+            return dp[w];
+        }
+        int v = INT_MAX,m;
+        for(int i=0;i<cost.size();i++){
+            if(cost[i]!=-1){
+                m = solve(w-i-1,cost,dp);
+                if(m>=0){
+                    v = min(v,m+cost[i]);
+                }
+            }
+        }
+        if(v!=INT_MAX){
+            return dp[w] = v;
+        }
+        else{
+            return -1;
+        }
+    }
+     
+    int minimumCost(int n, int w, vector<int> &cost) {
+           vector<int> dp(w+1,-1);
+           return solve(w,cost,dp);
+    }
+};
+
+******************************************************************************************************************************************************
 
 
