@@ -228,3 +228,55 @@ class Solution {
 };
 
 ************************************************************************************************************************************************
+****  Extract the Number from the String ( 22/06/24 )  ****
+
+
+class Solution {
+  public:
+    long long ExtractNumber(string sent) {
+
+        // code here
+        int i = 0,p;
+        string str="";
+        vector<string> v;
+        bool flag;
+        while(i<sent.size()){
+            str="";
+            p = int(sent[i]);
+            flag = false;
+            if(p>=48 && p<=57){
+                while(p>=48 && p<=57){
+                    if(p==57){
+                        flag = true;
+                    }
+                    str+=sent[i];
+                    i++;
+                    if(i>=sent.size()){
+                        break;
+                    }
+                    p = int(sent[i]);
+                }
+                if(flag==false){
+                   v.push_back(str);   
+                }
+            }
+            else{
+                i++;
+            }
+            
+        }
+        if(v.size()){
+            long long ans = stol(v[0]);
+            for(int i=0;i<v.size();i++){
+                if(stol(v[i])>ans){
+                    ans = stol(v[i]);
+                }
+            }
+            return ans;
+        }
+        return -1;
+        
+    }
+};
+
+**********************************************************************************************************************************************
