@@ -280,3 +280,29 @@ class Solution {
 };
 
 **********************************************************************************************************************************************
+**** Print Bracket Number ( 23/06/24 ) ****
+
+class Solution {
+  public:
+
+    vector<int> bracketNumbers(string str) {
+        char a = '(' , b = ')';
+        int p = 1;
+        stack<int> st;
+        vector<int> ans;
+        for(int i=0;i<str.size();i++){
+            if(str[i]==a){
+                ans.push_back(p);
+                st.push(p);
+                p++;
+            }
+            if(str[i]==b){
+                ans.push_back(st.top());
+                st.pop();
+            }
+        }
+        return ans;
+    }
+};
+
+***************************************************************************************************************************************************
