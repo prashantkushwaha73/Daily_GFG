@@ -306,3 +306,25 @@ class Solution {
 };
 
 ***************************************************************************************************************************************************
+**** Left Rotate Matrix K times ( 25/06/24 ) ****
+
+class Solution {
+  public:
+    vector<vector<int>> rotateMatrix(int k, vector<vector<int>> mat) {
+        vector<vector<int>> v = mat;
+        int p=k%mat[0].size(),r=mat.size(),c=mat[0].size();
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(j>=p){
+                    mat[i][j-p] = v[i][j];
+                }
+                else{
+                    mat[i][j+((c-j)-(p-j))] = v[i][j];
+                }
+            }
+        }
+        return mat;
+    }
+};
+
+**********************************************************************************************************************************************************
