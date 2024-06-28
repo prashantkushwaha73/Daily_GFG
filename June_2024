@@ -372,3 +372,50 @@ bool isToepliz(vector<vector<int>>& mat) {
 }
 
 **********************************************************************************************************************************************************
+**** The Palindrome Pattern ( 28/06/24 ) ****
+
+class Solution {
+  public:
+
+    string pattern(vector<vector<int>> &arr) {
+        bool flag;
+        int n = arr.size(),a,b;
+        string ans="-1";
+        for(int i=0;i<n;i++){
+            flag = true;
+            a=0; b=n-1;
+            while(a<b){
+                if(arr[i][a]!=arr[i][b]){
+                    flag = false;
+                    break;
+                }
+                a++; b--;
+            }
+            if(flag){
+                ans = to_string(i);
+                ans+=' '; ans+='R';
+                return ans;
+            }
+        }
+        
+        for(int i=0;i<n;i++){
+            flag = true;
+            a=0; b=n-1;
+            while(a<b){
+                if(arr[a][i]!=arr[b][i]){
+                    flag = false;
+                    break;
+                }
+                a++; b--;
+            }
+            if(flag){
+                ans = to_string(i);
+                ans+=' '; ans+='C';
+                return ans;
+            }
+        }
+        return ans;
+    }
+};
+
+*****************************************************************************************************************************************************
