@@ -435,3 +435,32 @@ bool areIdentical(struct Node *head1, struct Node *head2) {
 }
 
 *****************************************************************************************************************************************************
+**** Delete node in Doubly Linked List ( 30/06/24 ) ****
+
+class Solution {
+  public:
+    Node* deleteNode(Node* head, int x) {
+        if(x==1){
+                head->next->prev=NULL;
+                return head->next;
+        }
+        Node* temp = head->next;
+        int posi = 2;
+        while(1){
+            if(x==posi){
+                if(temp->next){
+                    temp->next->prev = temp->prev;
+                    temp->prev->next = temp->next;
+                    return head;
+                }
+                temp->prev->next = NULL;
+                return head;
+            }
+            temp = temp->next;
+            posi++;
+        }
+        return NULL;
+    }
+};
+
+*****************************************************************************************************************************************
