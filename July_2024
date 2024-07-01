@@ -1,0 +1,34 @@
+*******************************************************************************************************************************************************************************************
+**** Make Binary Tree From Linked List ( 01/07/24 ) ****
+
+void convert(Node *head, TreeNode *&root) {
+    queue<TreeNode*> q;
+    Node* temp = head;
+    root = new TreeNode(temp->data);
+    q.push(root); temp = temp->next;
+    int n; TreeNode* neww;
+    while(q.size()){
+        n = q.size();
+        for(int i=0;i<n;i++){
+            if(temp){
+                neww = new TreeNode(temp->data);
+                q.front()->left = neww;
+                temp = temp->next;
+                q.push(neww);
+            }
+            if(temp){
+                neww = new TreeNode(temp->data);
+                q.front()->right = neww;
+                temp = temp->next;
+                q.push(neww);
+            }
+            else{
+                return;
+            }
+            q.pop();
+        }
+    }
+    return;
+}
+
+*******************************************************************************************************************************************************************************************************
