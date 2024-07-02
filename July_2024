@@ -32,3 +32,25 @@ void convert(Node *head, TreeNode *&root) {
 }
 
 *******************************************************************************************************************************************************************************************************
+**** linked list of strings forms a palindrome ( 02/07/24 ) ****
+
+class Solution {
+  public:
+    bool compute(Node* head) {
+        string str = "";
+        while(head){
+            str += head->data;
+            head=head->next;
+        }
+        int i=0,j=str.size()-1;
+        while(i<j){
+            if(str[i]!=str[j]){
+                return false;
+            }
+            i++; j--;
+        }
+        return true;
+    }
+};
+
+*****************************************************************************************************************
