@@ -54,3 +54,41 @@ class Solution {
 };
 
 *****************************************************************************************************************
+**** Remove all occurences of duplicates in a linked list ( 03/07/24 ) ****
+
+class Solution {
+  public:
+    Node* removeAllDuplicates(struct Node* head) {
+        Node* ans = new Node(-1);
+        Node* p = ans;
+        int v=head->data,count=1;
+        head = head->next;
+        while(head){
+            if(head->data == v){
+                count++;
+            }
+            else{
+                if(count==1){
+                    Node* neww = new Node(v);
+                    p->next = neww;
+                    p = neww;
+                    v=head->data;
+                    count=1;
+                }
+                else{
+                     v=head->data;
+                    count=1;
+                }
+            }
+            head=head->next;
+        }
+        if(count==1){
+                    Node* neww = new Node(v);
+                    p->next = neww;
+                    p = neww;
+                }
+                return ans->next;
+    }
+};
+
+***********************************************************************************************************************************************
