@@ -92,3 +92,35 @@ class Solution {
 };
 
 ***********************************************************************************************************************************************
+/**** Vertical Width of a Binary Tree ( 05/07/24 ) ****
+
+class Solution {
+  public:
+    // Function to find the vertical width of a Binary Tree.
+    
+    void solve(Node* root,int posi,int& mini,int& maxi){
+        if(root==NULL){
+            return;
+        }
+        if(posi<mini){
+            mini = posi;
+        }
+        if(posi>maxi){
+            maxi = posi;
+        }
+        solve(root->left,posi-1,mini,maxi);
+        solve(root->right,posi+1,mini,maxi);
+    }
+    
+    int verticalWidth(Node* root) {
+        if(root==NULL){
+            return 0;
+        }
+        set<int> st;
+        int posi = 0,mini=0,maxi=0;
+        solve(root,posi,mini,maxi);
+        return maxi-mini+1;
+    }
+};
+
+************************************************************************************************************************************************
