@@ -124,3 +124,21 @@ class Solution {
 };
 
 ************************************************************************************************************************************************
+**** Populate Inorder Successor for all nodes ( 06/07/24 ) ****
+
+class Solution {
+  public:
+     Node* prev = new Node(-1);
+     
+    void populateNext(Node *root) {
+        if(root==NULL) return;
+        populateNext(root->left);
+        if(prev!=NULL){
+            prev->next = root;
+        }
+        prev = root;
+        populateNext(root->right);
+    }
+};
+
+****************************************************************************************************************************************************
