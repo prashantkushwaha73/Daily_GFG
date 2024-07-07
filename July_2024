@@ -142,3 +142,39 @@ class Solution {
 };
 
 ****************************************************************************************************************************************************
+**** Ancestors in Binary Tree ( 07/07/24 ) ****
+
+class Solution {
+  public:
+  
+    void solve(Node* root,vector<int>& ans,bool& flag,int& target){
+        if(root==NULL || flag){
+            return;
+        }
+        if(root->data == target){
+            flag = true;
+            return;
+        }
+        ans.push_back(root->data);
+        solve(root->left,ans,flag,target);
+        solve(root->right,ans,flag,target);
+        if(flag==false){
+            ans.pop_back();
+        }
+        
+    }
+   
+    // Function should return all the ancestor of the target node
+    vector<int> Ancestors(struct Node *root, int target) {
+        vector<int> ans;
+        if(root->data == target){
+            return ans;
+        }
+        bool flag = false;
+        solve(root,ans,flag,target);
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+
+************************************************************************************************************************************************
