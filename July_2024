@@ -178,3 +178,34 @@ class Solution {
 };
 
 ************************************************************************************************************************************************
+**** Closest Three Sum ( 09/07/24 ) ****
+
+class Solution {
+  public:
+    int threeSumClosest(vector<int> arr, int target) {
+        sort(arr.begin(),arr.end());
+        int ans = -1,s,e,n=arr.size(),v=INT_MAX;
+        for(int i=0;i<n;i++){
+            s = i+1; e = n-1;
+            while(s<e){
+                if(abs((arr[i]+arr[s]+arr[e])-target) < v){
+                    v = abs((arr[i]+arr[s]+arr[e])-target);
+                    
+                        ans = arr[i]+arr[s]+arr[e];
+                }
+                if(abs((arr[i]+arr[s]+arr[e])-target) == v){
+                    ans = max(ans,arr[i]+arr[s]+arr[e]);
+                }
+                if(arr[i]+arr[s]+arr[e] < target){
+                    s++;
+                }
+                else{
+                    e--;
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+*******************************************************************************************************************************************
