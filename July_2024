@@ -209,3 +209,30 @@ class Solution {
 };
 
 *******************************************************************************************************************************************
+**** Root to leaf path sum ( 12/07/24 ) ****
+
+class Solution {
+  public:
+    
+    void solve(Node* root,int sum,int &target,bool& ans){
+        if(root==NULL){
+            return;
+        }
+        sum += root->data;
+        if(root->left==NULL && root->right==NULL && sum==target){
+            ans = true;
+            return;
+        }
+        solve(root->left,sum,target,ans);
+        solve(root->right,sum,target,ans);
+        
+    }
+  
+    bool hasPathSum(Node *root, int target) {
+        bool ans = false;
+        solve(root,0,target,ans);
+        return ans;
+    }
+};
+
+*******************************************************************************************************************************************************
