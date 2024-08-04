@@ -1,0 +1,30 @@
+***************************************************************************************************************************************************
+**** N meetings in one room ( 04/08/24 ) ****
+
+class Solution {
+  public:
+    // Function to find the maximum number of meetings that can
+    // be performed in a meeting room.
+    int maxMeetings(int n, int start[], int end[]) {
+        vector<pair<int,int>> v;
+        for(int i=0;i<n;i++){
+            v.push_back({start[i],end[i]});
+        }
+        sort(v.begin(),v.end());
+        int s = v[0].first, e = v[0].second,ans =1;
+        for(int i=1;i<n;i++){
+            if(v[i].first > e){
+                ans++;
+                s = v[i].first; e = v[i].second;
+            }
+            else{
+                if(v[i].second <= e){
+                    s = v[i].first; e = v[i].second;
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+****************************************************************************************************************************************************************************************
