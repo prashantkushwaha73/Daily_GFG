@@ -77,3 +77,27 @@ public:
 };
 
 *********************************************************************************************************************************************************************
+**** Find length of Loop ( 29/08/24 ) ****
+
+class Solution {
+  public:
+    // Function to find the length of a loop in the linked list.
+    int countNodesinLoop(Node *head) {
+         Node* temp = head;
+         int count = 0;
+         unordered_map<Node*,bool> m;
+         unordered_map<Node*,int> p;
+         while(temp){
+             if(m[temp]){
+                 return count-p[temp]+1;
+             }
+             count++;
+             p[temp] = count;
+             m[temp] = true;
+             temp = temp->next;
+         }
+         return 0;
+    }
+};
+
+************************************************************************************************************************************
